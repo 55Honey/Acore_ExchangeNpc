@@ -56,7 +56,7 @@ Config.TurnInItemEntry[1] = 20725 --Nexus Crystal
 Config.TurnInItemAmount[1] = 4
 Config.GainItemEntry[1] = 22448 --Small Prismatic Shard
 Config.GainItemAmount[1] = 3
-Config.GossipOptionText[1] = 'Exchange 4 of item 20725 against 3 of item 22448
+Config.GossipOptionText[1] = 'Exchange 4 of item 20725 against 3 of item 22448'
 
 Config.TurnInItemEntry[2] = 16203 --Greater Eternal Essence
 Config.TurnInItemAmount[2] = 5
