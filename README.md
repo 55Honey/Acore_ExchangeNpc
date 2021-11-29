@@ -11,8 +11,9 @@ If the directory was not changed, add the .lua script to your `../lua_scripts/` 
 Adjust the top part of the .lua file with the config flags.
 
 ## Admin usage:
-Adjust the top part of the .lua file with the config flags. 
-- if the entry wasn't changed, do `.npc add (temp) 1116001`
+- Adjust the top part of the .lua file with the config flags. 
+- Run the up-query from `/database/world/`
+- If the entry wasn't changed, do `.npc add (temp) 1116001`
 
 ## GM usage:
 Nothing to do.
