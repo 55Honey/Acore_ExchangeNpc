@@ -91,7 +91,7 @@ local function eI_onHello(event, player, creature)
     if player == nil then return end
 
     local n
-    for n = 1,#TurnInItemEntry do
+    for n = 1,#Config.TurnInItemEntry do
         player:GossipMenuAddItem(OPTION_ICON_CHAT, "Config.GossipOptionText[n]", Config.NpcEntry, n-1)
     end
 
