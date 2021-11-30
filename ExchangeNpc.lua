@@ -46,9 +46,9 @@ Config.NpcY = 33
 Config.NpcZ = 44
 Config.NpcO = 55
 
-Config.GossipText = 'Hello Time Traveler! Chromie has ordered me to provide you with proper tools on your journey, if you can show evidence of being worthy.'
+Config.GossipText = 92101
 Config.NotEnoughItemsMessage = 'You do not have the required items at hand.'
-Config.ExchangeSuccessfulMessage = 'Thank you! The exchange will be sent to you in a mail by my assistans as soon as possible.'
+Config.ExchangeSuccessfulMessage = 'Thank you! The exchange will be sent to you in a mail by my assistants as soon as possible.'
 Config.mailSubject = 'Item Exchange'
 Config.mailMessage = 'Greetings, Time Traveler! Here you are the requested substitutes for the provided items.'
 
