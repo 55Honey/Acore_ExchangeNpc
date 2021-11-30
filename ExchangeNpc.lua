@@ -102,7 +102,7 @@ local function eI_onGossipSelect(event, player, object, sender, intid, code, men
     if player == nil then return end
 
     local exchangeId = intid + 1
-    local playerGuid = player:GetGUID()
+    local playerGuid = player:tonumber(tostring(GetGUID()))
     if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
         player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
 	SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
