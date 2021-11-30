@@ -122,6 +122,6 @@ end
 local NpcObject
 NpcObject = PerformIngameSpawn(1, Config.NpcEntry, Config.MapId, Config.InstanceId, Config.NpcX, Config.NpcY, Config.NpcZ, Config.NpcO)
 
-eventIdCloseEluna = RegisterServerEventELUNA_EVENT_ON_LUA_STATE_CLOSE, eI_CloseLua, 0)
+eventIdCloseEluna = RegisterServerEvent(ELUNA_EVENT_ON_LUA_STATE_CLOSE, eI_CloseLua, 0)
 eventIdHello = RegisterCreatureGossipEvent(Config.NpcEntry, GOSSIP_EVENT_ON_HELLO, eI_onHello)
 eventIdStart = RegisterCreatureGossipEvent(Config.NpcEntry, GOSSIP_EVENT_ON_SELECT, eI_onGossipSelect)
