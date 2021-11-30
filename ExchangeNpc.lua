@@ -101,7 +101,7 @@ end
 local function eI_onGossipSelect(event, player, object, sender, intid, code, menu_id)
     if player == nil then return end
 
-    local exchangeId = intid - 1
+    local exchangeId = intid + 1
     local playerGuid = player:GetGUID()
     if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
         player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
