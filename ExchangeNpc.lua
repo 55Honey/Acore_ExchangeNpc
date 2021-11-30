@@ -92,7 +92,7 @@ local function eI_onHello(event, player, creature)
 
     local n
     for n = 1,#Config.TurnInItemEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, "Config.GossipOptionText[n]", Config.NpcEntry, n-1)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.GossipOptionText[n], Config.NpcEntry, n-1)
     end
 
     player:GossipSendMenu(Config.GossipText, creature, 0)
