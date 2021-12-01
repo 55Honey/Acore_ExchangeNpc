@@ -13,7 +13,7 @@ Adjust the top part of the .lua file with the config flags.
 ## Admin usage:
 - Adjust the top part of the .lua file with the config flags. 
 - Run the up-query from `/database/world/`
-- If the entry wasn't changed, do `.npc add (temp) 1116001`
+- If the location wasn't changed, do `.go zonexy 51.1 27.7 976`
 
 ## GM usage:
 Nothing to do.
