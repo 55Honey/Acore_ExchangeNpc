@@ -35,18 +35,21 @@ local ELUNA_EVENT_ON_LUA_STATE_CLOSE = 16
 local eventIdCloseEluna
 local eventIdHello
 local eventIdStart
+local npcObject
+local npcObjectGuid
 
 ------------------------------------------------------------------------------------------------
 
-Config.NpcEntry = 1116001    -- DB entry. Must match this script's SQL for the world DB
+Config.NpcEntry = 1116001   -- DB entry. Must match this script's SQL for the world DB
 Config.InstanceId = 0
-Config.MapId = 1             --
-Config.NpcX = 22
-Config.NpcY = 33
-Config.NpcZ = 44
-Config.NpcO = 55
+Config.MapId = 1            -- Map where to spawn the exchange NPC
+Config.NpcX = -7153         -- x Pos where to spawn the exchange NPC
+Config.NpcY = -3740         -- y Pos where to spawn the exchange NPC
+Config.NpcZ = 8.4           -- z Pos where to spawn the exchange NPC
+Config.NpcO = 5.06          -- orientation to spawn the exchange NPC
 
 Config.GossipText = 92101
+Config.GossipConfirmationText = 92102
 Config.NotEnoughItemsMessage = 'You do not have the required items at hand.'
 Config.ExchangeSuccessfulMessage = 'Thank you! The exchange will be sent to you in a mail by my assistants as soon as possible.'
 Config.mailSubject = 'Item Exchange'
@@ -92,37 +95,48 @@ local function eI_onHello(event, player, creature)
 
     local n
     for n = 1,#Config.TurnInItemEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.GossipOptionText[n], Config.NpcEntry, n-1)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.GossipOptionText[n], Config.NpcEntry, n-1)
     end
 
     player:GossipSendMenu(Config.GossipText, creature, 0)
 end
 
 local function eI_onGossipSelect(event, player, object, sender, intid, code, menu_id)
+
     if player == nil then return end
 
-    local exchangeId = intid + 1
-    local playerGuid = tonumber(tostring(player:GetGUID()))
-    if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
-        player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
-	SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
-        player:SendBroadcastMessage(Config.ExchangeSuccessfulMessage)
+    if intid < 1000 then
+        player:GossipComplete()
+        local exchangeId = intid + 1
+        local newintid = intid + 1000
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.GossipOptionText[exchangeId], Config.NpcEntry, newintid)
+        player:GossipSendMenu(Config.GossipConfirmationText, object, 0)
     else
-        player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
+        local playerGuid = tonumber(tostring(player:GetGUID()))
+        local exchangeId = intid - 999
+        if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
+            player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
+            SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
+            player:SendBroadcastMessage(Config.ExchangeSuccessfulMessage)
+        else
+            player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
+        end
+        player:GossipComplete()
     end
-    player:GossipComplete()
 end
 
 local function eI_CloseLua(eI_CloseLua)
-    print('(eI_CloseLua) has fired.')
-    if NpcObject ~= nil then
-        NpcObject:DespawnOrUnsummon(0)
+    if npcObjectGuid ~= nil then
+        local map
+        map = GetMapById(Config.MapId)
+        npcObject = map:GetWorldObject(npcObjectGuid):ToCreature()
+        npcObject:DespawnOrUnsummon(0)
     end
 end
 
 --Startup:
-local NpcObject
-NpcObject = PerformIngameSpawn(1, Config.NpcEntry, Config.MapId, Config.InstanceId, Config.NpcX, Config.NpcY, Config.NpcZ, Config.NpcO)
+npcObject = PerformIngameSpawn(1, Config.NpcEntry, Config.MapId, Config.InstanceId, Config.NpcX, Config.NpcY, Config.NpcZ, Config.NpcO)
+npcObjectGuid = npcObject:GetGUID()
 
 eventIdCloseEluna = RegisterServerEvent(ELUNA_EVENT_ON_LUA_STATE_CLOSE, eI_CloseLua, 0)
 eventIdHello = RegisterCreatureGossipEvent(Config.NpcEntry, GOSSIP_EVENT_ON_HELLO, eI_onHello)
