@@ -56,34 +56,48 @@ Config.mailSubject = 'Item Exchange'
 Config.mailMessage = 'Greetings, Time Traveler! Here you are the requested substitutes for the provided items.'
 
 Config.TurnInItemEntry[1] = 20725 --Nexus Crystal
-Config.TurnInItemAmount[1] = 4
+Config.TurnInItemAmount[1] = 1
 Config.GainItemEntry[1] = 22448 --Small Prismatic Shard
-Config.GainItemAmount[1] = 3
-Config.GossipOptionText[1] = 'Exchange 4 of item 20725 against 3 of item 22448'
+Config.GainItemAmount[1] = 1
+Config.GossipOptionText[1] = 'Exchange 1 of your Nexus Crystal against 1 of my Small Prismatic Shard.'
 
-Config.TurnInItemEntry[2] = 16203 --Greater Eternal Essence
-Config.TurnInItemAmount[2] = 5
-Config.GainItemEntry[2] = 20731 --Greater Planar Essence
+Config.TurnInItemEntry[2] = 14344 --Large Brilliant Shard
+Config.TurnInItemAmount[2] = 3
+Config.GainItemEntry[2] = 22446 --Greater Planar Essence
 Config.GainItemAmount[2] = 1
-Config.GossipOptionText[2] = 'Exchange 5 of item 16203 against 1 of item 20731.'
+Config.GossipOptionText[2] = 'Exchange 3 of your Large Brilliant Shards against 1 of my Greater Planar Essence.'
 
-Config.TurnInItemEntry[3] = 7082 --Essence of Air
+Config.TurnInItemEntry[3] = 12809 --Guardian Stone
 Config.TurnInItemAmount[3] = 1
-Config.GainItemEntry[3] = 22451 --Primal Air
-Config.GainItemAmount[3] = 5
-Config.GossipOptionText[3] = 'Exchange 1 of item 7082 against 5 of item 22451.'
+Config.GainItemEntry[3] = 22452 --Primal Earth
+Config.GainItemAmount[3] = 1
+Config.GossipOptionText[3] = 'Exchange 1 of your Guardian Stone against 1 of my Primal Earth.'
 
-Config.TurnInItemEntry[4] = 7076 --Essence of Earth
+Config.TurnInItemEntry[4] = 13468 --Black Lotus
 Config.TurnInItemAmount[4] = 1
-Config.GainItemEntry[4] = 22452 --Primal Earth
+Config.GainItemEntry[4] = 22794 --Fel Lotus
 Config.GainItemAmount[4] = 1
-Config.GossipOptionText[4] = 'Exchange 1 of item 7076 against 1 of item 22452.'
+Config.GossipOptionText[4] = 'Exchange 1 of your Black Lotus against 1 of my Fel Lotus.'
 
-Config.TurnInItemEntry[5] = 13468 --Black Lotus
+Config.TurnInItemEntry[5] = 11754 --Black Diamond
 Config.TurnInItemAmount[5] = 1
-Config.GainItemEntry[5] = 22794 --Fel Lotus
-Config.GainItemAmount[5] = 1
-Config.GossipOptionText[5] = 'Exchange 1 of item 13468 against 1 of item 22794.'
+Config.GainItemEntry[5] = 22456 --Primal Shadow
+Config.GainItemAmount[5] = 4
+Config.GossipOptionText[5] = 'Exchange 1 of your Black Diamond against 4 of my Small Primal Shadow.'
+
+Config.TurnInItemEntry[6] = 7082 --Essence of Air
+Config.TurnInItemAmount[6] = 2
+Config.GainItemEntry[6] = 22451 --Primal Air
+Config.GainItemAmount[6] = 1
+Config.GossipOptionText[6] = 'Exchange 2 of your Essence of Air against 1 of my Primal Air.'
+
+Config.TurnInItemEntry[7] = 18512 --Larval Acid
+Config.TurnInItemAmount[7] = 1
+Config.GainItemEntry[7] = 21886 --Primal Life
+Config.GainItemAmount[7] = 1
+Config.GossipOptionText[7] = 'Exchange 1 of your Larval Acid against 1 of my Primal Life.'
+
+
 
 
 ------------------------------------------
@@ -95,7 +109,7 @@ local function eI_onHello(event, player, creature)
 
     local n
     for n = 1,#Config.TurnInItemEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.GossipOptionText[n], Config.NpcEntry, n-1)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.GossipOptionText[n], Config.NpcEntry, n-1)
     end
 
     player:GossipSendMenu(Config.GossipText, creature, 0)
@@ -109,7 +123,7 @@ local function eI_onGossipSelect(event, player, object, sender, intid, code, men
         player:GossipComplete()
         local exchangeId = intid + 1
         local newintid = intid + 1000
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.GossipOptionText[exchangeId], Config.NpcEntry, newintid)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.GossipOptionText[exchangeId], Config.NpcEntry, newintid)
         player:GossipSendMenu(Config.GossipConfirmationText, object, 0)
     else
         local playerGuid = tonumber(tostring(player:GetGUID()))
