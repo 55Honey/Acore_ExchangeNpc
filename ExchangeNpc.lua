@@ -59,43 +59,43 @@ Config.TurnInItemEntry[1] = 20725 --Nexus Crystal
 Config.TurnInItemAmount[1] = 1
 Config.GainItemEntry[1] = 22448 --Small Prismatic Shard
 Config.GainItemAmount[1] = 1
-Config.GossipOptionText[1] = 'Exchange 1 of your Nexus Crystal against 1 of my Small Prismatic Shard.'
+Config.GossipOptionText[1] = 'Exchange 1 of my Nexus Crystal against 1 of your Small Prismatic Shard.'
 
 Config.TurnInItemEntry[2] = 14344 --Large Brilliant Shard
 Config.TurnInItemAmount[2] = 3
 Config.GainItemEntry[2] = 22446 --Greater Planar Essence
 Config.GainItemAmount[2] = 1
-Config.GossipOptionText[2] = 'Exchange 3 of your Large Brilliant Shards against 1 of my Greater Planar Essence.'
+Config.GossipOptionText[2] = 'Exchange 3 of my Large Brilliant Shards against 1 of your Greater Planar Essence.'
 
 Config.TurnInItemEntry[3] = 12809 --Guardian Stone
 Config.TurnInItemAmount[3] = 1
 Config.GainItemEntry[3] = 22452 --Primal Earth
 Config.GainItemAmount[3] = 1
-Config.GossipOptionText[3] = 'Exchange 1 of your Guardian Stone against 1 of my Primal Earth.'
+Config.GossipOptionText[3] = 'Exchange 1 of my Guardian Stone against 1 of your Primal Earth.'
 
 Config.TurnInItemEntry[4] = 13468 --Black Lotus
 Config.TurnInItemAmount[4] = 1
 Config.GainItemEntry[4] = 22794 --Fel Lotus
 Config.GainItemAmount[4] = 1
-Config.GossipOptionText[4] = 'Exchange 1 of your Black Lotus against 1 of my Fel Lotus.'
+Config.GossipOptionText[4] = 'Exchange 1 of my Black Lotus against 1 of your Fel Lotus.'
 
 Config.TurnInItemEntry[5] = 11754 --Black Diamond
 Config.TurnInItemAmount[5] = 1
 Config.GainItemEntry[5] = 22456 --Primal Shadow
 Config.GainItemAmount[5] = 4
-Config.GossipOptionText[5] = 'Exchange 1 of your Black Diamond against 4 of my Small Primal Shadow.'
+Config.GossipOptionText[5] = 'Exchange 1 of my Black Diamond against 4 of your Small Primal Shadow.'
 
 Config.TurnInItemEntry[6] = 7082 --Essence of Air
 Config.TurnInItemAmount[6] = 2
 Config.GainItemEntry[6] = 22451 --Primal Air
 Config.GainItemAmount[6] = 1
-Config.GossipOptionText[6] = 'Exchange 2 of your Essence of Air against 1 of my Primal Air.'
+Config.GossipOptionText[6] = 'Exchange 2 of my Essence of Air against 1 of your Primal Air.'
 
 Config.TurnInItemEntry[7] = 18512 --Larval Acid
 Config.TurnInItemAmount[7] = 1
 Config.GainItemEntry[7] = 21886 --Primal Life
 Config.GainItemAmount[7] = 1
-Config.GossipOptionText[7] = 'Exchange 1 of your Larval Acid against 1 of my Primal Life.'
+Config.GossipOptionText[7] = 'Exchange 1 of my Larval Acid against 1 of your Primal Life.'
 
 
 
