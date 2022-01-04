@@ -65,7 +65,7 @@ Config.TurnInItemEntry[2] = 14344 --Large Brilliant Shard
 Config.TurnInItemAmount[2] = 1
 Config.GainItemEntry[2] = 22447 --Lesser Planar Essence
 Config.GainItemAmount[2] = 1
-Config.GossipOptionText[2] = 'Take 1 of my Large Brilliant Shards and ask Chromie to send me 1 of her Greater Planar Essence by mail.'
+Config.GossipOptionText[2] = 'Take 1 of my Large Brilliant Shards and ask Chromie to send me 1 of her Lesser Planar Essence by mail.'
 
 Config.TurnInItemEntry[3] = 12809 --Guardian Stone
 Config.TurnInItemAmount[3] = 1
