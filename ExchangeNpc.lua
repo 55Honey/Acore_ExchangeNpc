@@ -140,7 +140,7 @@ local function eI_onGossipSelect(event, player, object, sender, intid, code, men
                 player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
                 SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
                 player:SendBroadcastMessage(Config.ExchangeSuccessfulMessage)
-            elseif n == amount
+            elseif n == amount then
                 player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
             end
         end
