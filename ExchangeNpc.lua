@@ -124,16 +124,25 @@ local function eI_onGossipSelect(event, player, object, sender, intid, code, men
         local exchangeId = intid + 1
         local newintid = intid + 1000
         player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.GossipOptionText[exchangeId], Config.NpcEntry, newintid)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.GossipOptionText[exchangeId]..' (Turn in up to 10 at once)', Config.NpcEntry, newintid + 1000)
         player:GossipSendMenu(Config.GossipConfirmationText, object, 0)
     else
         local playerGuid = tonumber(tostring(player:GetGUID()))
         local exchangeId = intid - 999
-        if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
-            player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
-            SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
-            player:SendBroadcastMessage(Config.ExchangeSuccessfulMessage)
-        else
-            player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
+        local amount = 1
+        if exchangeId > 1000 then
+            exchangeId = exchangeId - 1000
+            amount = 10
+        end
+        local n
+        for n = 1,amount do
+            if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
+                player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
+                SendMail(Config.mailSubject, Config.mailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
+                player:SendBroadcastMessage(Config.ExchangeSuccessfulMessage)
+            elseif n == amount
+                player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
+            end
         end
         player:GossipComplete()
     end
