@@ -42,7 +42,7 @@ local npcHonorObject
 local npcHonorObjectGuid
 
 Config.ItemNpcOn = 1            -- spawns an NPC to turn in items for other items
-Config.HonorNpcOn = 1           -- spawns an NPT to trade honor vs gold
+Config.HonorNpcOn = 1           -- spawns an NPC to trade honor vs gold
 
 ------------------------------------------------------------------------------------------------
 -- Item Exchange NPC
