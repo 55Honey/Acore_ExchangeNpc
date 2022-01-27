@@ -236,6 +236,7 @@ end
 if Config.HonorNpcOn == 1 then
     npcHonorObject = PerformIngameSpawn(1, Config.HonorNpcEntry, Config.HonorNpcMapId, Config.HonorNpcInstanceId, Config.HonorNpcX, Config.HonorNpcY, Config.HonorNpcZ, Config.HonorNpcO)
     npcHonorObjectGuid = npcHonorObject:GetGUID()
+    npcHonorObject:CastSpell(npcItemObject,15473,true)
 
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_HonorOnHello)
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_HonorOnGossipSelect)
