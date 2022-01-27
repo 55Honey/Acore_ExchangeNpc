@@ -107,11 +107,11 @@ Config.ItemGossipOptionText[7] = 'Take 1 of my Larval Acid and ask Chromie to se
 -- Honor Exchange NPC
 Config.HonorNpcEntry = 1116002   -- DB entry. Must match this script's SQL for the world DB
 Config.HonorNpcInstanceId = 0
-Config.HonorNpcMapId = 1         -- Map where to spawn the honor exchange NPC
-Config.HonorNpcX = -7153         -- x Pos where to spawn the honor exchange NPC
-Config.HonorNpcY = -3741         -- y Pos where to spawn the honor exchange NPC
-Config.HonorNpcZ = 8.4           -- z Pos where to spawn the honor exchange NPC
-Config.HonorNpcO = 5.06          -- orientation to spawn the honor exchange NPC
+Config.HonorNpcMapId = 0         -- Map where to spawn the honor exchange NPC
+Config.HonorNpcX = -14288.9      -- x Pos where to spawn the honor exchange NPC
+Config.HonorNpcY = 533.9         -- y Pos where to spawn the honor exchange NPC
+Config.HonorNpcZ = 8.8           -- z Pos where to spawn the honor exchange NPC
+Config.HonorNpcO = 3.64          -- orientation to spawn the honor exchange NPC
 
 Config.HonorGossipText = 92103
 Config.HonorGossipConfirmationText = 92104
