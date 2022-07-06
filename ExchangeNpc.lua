@@ -31,6 +31,7 @@ Config.GainGoldAmount = {}
 local GOSSIP_EVENT_ON_HELLO = 1             -- (event, player, object) - Object is the Creature/GameObject/Item. Can return false to do default action. For item gossip can return false to stop spell casting.
 local GOSSIP_EVENT_ON_SELECT = 2            -- (event, player, object, sender, intid, code, menu_id)
 local OPTION_ICON_CHAT = 0
+local GOSSIP_ICON_VENDOR = 1
 
 local ELUNA_EVENT_ON_LUA_STATE_CLOSE = 16
 
@@ -140,7 +141,7 @@ local function eI_ItemOnHello(event, player, creature)
         player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.ItemGossipOptionText[n], Config.ItemNpcEntry, n-1)
     end
 
-    player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Let\'s trade', Config.ItemNpcEntry, 10000)
+    player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, 'Let\'s trade', Config.ItemNpcEntry, 10000)
 
     player:GossipSendMenu(Config.ItemGossipText, creature, 0)
 end
