@@ -140,6 +140,8 @@ local function eI_ItemOnHello(event, player, creature)
         player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.ItemGossipOptionText[n], Config.ItemNpcEntry, n-1)
     end
 
+    player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Let\'s trade', Config.ItemNpcEntry, 10000)
+
     player:GossipSendMenu(Config.ItemGossipText, creature, 0)
 end
 
@@ -153,6 +155,8 @@ local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code,
         local newintid = intid + 1000
         player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.ItemGossipOptionText[exchangeId], Config.ItemNpcEntry, newintid)
         player:GossipSendMenu(Config.ItemGossipConfirmationText, object, 0)
+    elseif intid == 10000 then
+        player:SendListInventory(object)
     else
         local playerGuid = tonumber(tostring(player:GetGUID()))
         local exchangeId = intid - 999
