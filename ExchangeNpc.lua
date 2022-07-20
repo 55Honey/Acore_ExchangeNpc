@@ -62,11 +62,11 @@ Config.ItemExchangeSuccessfulMessage = 'Thank you! The exchange will be sent to 
 Config.ItemMailSubject = 'Item Exchange'
 Config.ItemMailMessage = 'Greetings, Time Traveler! Here you are the requested substitutes for the provided items.'
 
-Config.TurnInItemEntry[1] = 20725 --Nexus Crystal
-Config.TurnInItemAmount[1] = 1
-Config.GainItemEntry[1] = 22448 --Small Prismatic Shard
-Config.GainItemAmount[1] = 1
-Config.ItemGossipOptionText[1] = 'Take 1 of my Nexus Crystal and ask Chromie to send me 1 of her Small Prismatic Shard by mail.'
+-- Config.TurnInItemEntry[1] = 20725 --Nexus Crystal
+-- Config.TurnInItemAmount[1] = 1
+-- Config.GainItemEntry[1] = 22448 --Small Prismatic Shard
+-- Config.GainItemAmount[1] = 1
+-- Config.ItemGossipOptionText[1] = 'Take 1 of my Nexus Crystal and ask Chromie to send me 1 of her Small Prismatic Shard by mail.'
 
 Config.TurnInItemEntry[2] = 14344 --Large Brilliant Shard
 Config.TurnInItemAmount[2] = 1
