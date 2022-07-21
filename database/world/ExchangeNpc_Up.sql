@@ -335,4 +335,3 @@ UPDATE `item_template` SET `BuyPrice` = 2430000, `bonding` = 1 WHERE `entry` IN 
 
 -- buy price minor
 UPDATE `item_template` SET `BuyPrice` = 2000000, `bonding` = 1 WHERE `entry` IN (44920, 43400, 49084, 43374, 44923, 44922, 43394);
-
