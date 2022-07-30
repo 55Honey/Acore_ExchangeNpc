@@ -149,57 +149,61 @@ Config.TokenNpcY = 531.9         -- y Pos where to spawn the honor exchange NPC
 Config.TokenNpcZ = 8.8           -- z Pos where to spawn the honor exchange NPC
 Config.TokenNpcO = 3.64          -- orientation to spawn the honor exchange NPC
 
-Config.MissingConditionsMessage = 'You do not meet all conditions to obtain this.'
+Config.MissingTokenConditionsMessage = 'You do not meet all conditions to obtain this.'
 Config.TokenExchangeSuccessfulMessage = 'Thank you! The token was added to your inventory.'
 
 -- 1: Gloves 2:Boots 3:Shoulders 4:Pants 5:Helmet 6:Chest 7:Weapons2h 8:Weapons1h 9:Offhand
-Config.HonorPrice = { 30000, 30000, 35000, 35000, 50000, 75000, 50000, 25000 }
+Config.HonorPrice = { 30000, 30000, 35000, 35000, 40000, 50000, 75000, 50000, 25000 }
+
 -- 20558 = Warsong Marks, 20559 = Arathi Marks, 20560 = Alterac Valley Marks
 Config.MarkEntry[1] = { 20558, 20559, 20560 }
 Config.MarkCount[1] = { 10, 3, 1 }
 Config.GainTokenEntry[1] = 31093
---put either item entry the player needs to own into this. If they own one, empty for [1] cause no prerequesites.
+--put either item entry the player needs to own into this. If they own any of the listed items, they may buy the next. Empty for [1] cause no prerequesites.
+--this array should list the token from the previous tier and ALL armor pieces, that a player could buy with the previous token
 Config.Requirement[1] = {}
+
+--todo: Config.Requirement[n] needs lists of ALL items per slot
 
 Config.MarkEntry[2] = { 20558, 20559, 20560 }
 Config.MarkCount[2] = { 10, 3, 1 }
 Config.GainTokenEntry[2] = 34858
-Config.Requirement[2] = {}
+Config.Requirement[2] = {31093}
 
 Config.MarkEntry[3] = { 20558, 20559, 20560 }
 Config.MarkCount[3] = { 10, 3, 1 }
-Config.GainTokenEntry[3] = 34858
-Config.Requirement[3] = {}
+Config.GainTokenEntry[3] = 31102
+Config.Requirement[3] = {34858}
 
 Config.MarkEntry[4] = { 20558, 20559, 20560 }
 Config.MarkCount[4] = { 10, 3, 1 }
-Config.GainTokenEntry[4] = 34858
-Config.Requirement[4] = {}
+Config.GainTokenEntry[4] = 31099
+Config.Requirement[4] = {31102}
 
 Config.MarkEntry[5] = { 20558, 20559, 20560 }
 Config.MarkCount[5] = { 10, 3, 1 }
-Config.GainTokenEntry[5] = 34858
-Config.Requirement[5] = {}
+Config.GainTokenEntry[5] = 31096
+Config.Requirement[5] = {31099}
 
 Config.MarkEntry[6] = { 20558, 20559, 20560 }
 Config.MarkCount[6] = { 10, 3, 1 }
-Config.GainTokenEntry[6] = 34858
-Config.Requirement[6] = {}
+Config.GainTokenEntry[6] = 31090
+Config.Requirement[6] = {31096}
 
 Config.MarkEntry[7] = { 20558, 20559, 20560 }
 Config.MarkCount[7] = { 10, 3, 1 }
-Config.GainTokenEntry[7] = 34858
-Config.Requirement[7] = {}
+Config.GainTokenEntry[7] = 34855
+Config.Requirement[7] = {31090}
 
 Config.MarkEntry[8] = { 20558, 20559, 20560 }
 Config.MarkCount[8] = { 10, 3, 1 }
-Config.GainTokenEntry[8] = 34858
-Config.Requirement[8] = {}
+Config.GainTokenEntry[8] = 34852
+Config.Requirement[8] = {31090}
 
 Config.MarkEntry[9] = { 20558, 20559, 20560 }
 Config.MarkCount[9] = { 10, 3, 1 }
-Config.GainTokenEntry[9] = 34858
-Config.Requirement[9] = {}
+Config.GainTokenEntry[9] = 34853
+Config.Requirement[9] = {31090}
 
 ------------------------------------------
 -- NO ADJUSTMENTS REQUIRED BELOW THIS LINE
@@ -296,7 +300,7 @@ local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
     end
 
     -- check if the player has enough honor
-    if not player:GetHonorPoints >= Config.HonorPrice[intid] then
+    if not player:GetHonorPoints() >= Config.HonorPrice[intid] then
         return false
     end
 
@@ -326,7 +330,7 @@ local function eI_TokenOnGossipSelect( event, player, object, sender, intid, cod
         RemoveTheHonorAndMarks( intid )
         GiveTheToken( intid )
     else
-        -- todo: tell the player they are screwed
+        player:SendBroadcastMessage(Config.MissingTokenConditionsMessage)
     end
 end
 
