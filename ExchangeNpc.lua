@@ -161,49 +161,49 @@ Config.MarkCount[1] = { 10, 3, 1 }
 Config.GainTokenEntry[1] = 31093
 --put either item entry the player needs to own into this. If they own any of the listed items, they may buy the next. Empty for [1] cause no prerequesites.
 --this array should list the token from the previous tier and ALL armor pieces, that a player could buy with the previous token
-Config.Requirement[1] = {}
+Config.Requirement[1] = {}      --if length of array is 0, the condition is always true
 
 --todo: Config.Requirement[n] needs lists of ALL items per slot
 
 Config.MarkEntry[2] = { 20558, 20559, 20560 }
 Config.MarkCount[2] = { 10, 3, 1 }
 Config.GainTokenEntry[2] = 34858
-Config.Requirement[2] = {31093}
+Config.Requirement[2] = { 31093,16440,16448,16454,16463,16471,16484,17584,17608,29607,16540,16548,16555,16560,16571,16574,17588,17620,29613 }
 
 Config.MarkEntry[3] = { 20558, 20559, 20560 }
 Config.MarkCount[3] = { 10, 3, 1 }
 Config.GainTokenEntry[3] = 31102
-Config.Requirement[3] = {34858}
+Config.Requirement[3] = { 34858,16437,16446,16459,16462,16472,16483,17583,17607,29606,16539,16545,16554,16558,16569,16573,17586,17618,29612 }
 
 Config.MarkEntry[4] = { 20558, 20559, 20560 }
 Config.MarkCount[4] = { 10, 3, 1 }
 Config.GainTokenEntry[4] = 31099
-Config.Requirement[4] = {31102}
+Config.Requirement[4] = { 31102,16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
 
 Config.MarkEntry[5] = { 20558, 20559, 20560 }
 Config.MarkCount[5] = { 10, 3, 1 }
 Config.GainTokenEntry[5] = 31096
-Config.Requirement[5] = {31099}
+Config.Requirement[5] = { 31099,16442,16450,16456,16467,16475,16479,17579,17603,29608,16534,16543,16552,16564,16567,16579,17593,17625,29614 }
 
 Config.MarkEntry[6] = { 20558, 20559, 20560 }
 Config.MarkCount[6] = { 10, 3, 1 }
 Config.GainTokenEntry[6] = 31090
-Config.Requirement[6] = {31096}
+Config.Requirement[6] = { 31096,16451,16455,16441,16465,16474,16478,17578,17602,29610,16533,16542,16550,16561,16566,16578,17591,17623,29616 }
 
 Config.MarkEntry[7] = { 20558, 20559, 20560 }
 Config.MarkCount[7] = { 10, 3, 1 }
 Config.GainTokenEntry[7] = 34855
-Config.Requirement[7] = {31090}
+Config.Requirement[7] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
 
 Config.MarkEntry[8] = { 20558, 20559, 20560 }
 Config.MarkCount[8] = { 10, 3, 1 }
 Config.GainTokenEntry[8] = 34852
-Config.Requirement[8] = {31090}
+Config.Requirement[8] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
 
 Config.MarkEntry[9] = { 20558, 20559, 20560 }
 Config.MarkCount[9] = { 10, 3, 1 }
 Config.GainTokenEntry[9] = 34853
-Config.Requirement[9] = {31090}
+Config.Requirement[9] = {31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615}
 
 ------------------------------------------
 -- NO ADJUSTMENTS REQUIRED BELOW THIS LINE
@@ -305,10 +305,15 @@ local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
     end
 
     -- check if the player owns the previous set item or the token for it. Also search in bank.
-    for n = 1, #Config.Requirement[intid] do
-        if player:HasItem( Config.Requirement[intid][n], 1, true ) then
-            return true
+    if #Config.Requirement[intid] == 0 then
+        return true
+    else
+        for n = 1, #Config.Requirement[intid] do
+            if player:HasItem( Config.Requirement[intid][n], 1, true ) then
+                return false
+            end
         end
+        return true
     end
 
     return false
