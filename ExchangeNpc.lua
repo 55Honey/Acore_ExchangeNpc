@@ -388,7 +388,6 @@ end
 if Config.TokenNpcOn == 1 then
     npcTokenObject = PerformIngameSpawn(1, Config.TokenNpcEntry, Config.TokenNpcMapId, Config.TokenNpcInstanceId, Config.TokenNpcX, Config.TokenNpcY, Config.TokenNpcZ, Config.TokenNpcO)
     npcTokenObjectGuid = npcTokenObject:GetGUID()
-    npcTokenObject:CastSpell(npcItemObject,15473,true)
 
     RegisterCreatureGossipEvent(Config.TokenNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_TokenOnGossipSelect)
 end
