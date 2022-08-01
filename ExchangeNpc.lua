@@ -29,10 +29,16 @@ Config.ItemGossipOptionText = {}
 Config.TurnInHonorAmount = {}
 Config.GainGoldAmount = {}
 
+Config.TokenNpcMapId = {}
+Config.TokenNpcX = {}
+Config.TokenNpcY = {}
+Config.TokenNpcZ = {}
+Config.TokenNpcO = {}
 Config.MarkEntry = {}
 Config.MarkCount = {}
 Config.GainTokenEntry = {}
 Config.Requirement = {}
+Config.TokenGossipOptionText = {}
 
 local GOSSIP_EVENT_ON_HELLO = 1             -- (event, player, object) - Object is the Creature/GameObject/Item. Can return false to do default action. For item gossip can return false to stop spell casting.
 local GOSSIP_EVENT_ON_SELECT = 2            -- (event, player, object, sender, intid, code, menu_id)
@@ -140,14 +146,20 @@ Config.GainGoldAmount[4] = 50           -- Gain Gold amount per turn in
 ------------------------------------------------------------------------------------------------
 -- Token Exchange NPC
 ------------------------------------------------------------------------------------------------
-Config.TokenNpcEntry = 1116003   -- DB entry. Must match this script's SQL for the world DB
+Config.TokenNpcEntry = 1116003      -- DB entry. Must match this script's SQL for the world DB
 Config.TokenNpcInstanceId = 0
 -- todo: needs new position
-Config.TokenNpcMapId = 0         -- Map where to spawn the honor exchange NPC
-Config.TokenNpcX = -14288.9      -- x Pos where to spawn the honor exchange NPC
-Config.TokenNpcY = 531.9         -- y Pos where to spawn the honor exchange NPC
-Config.TokenNpcZ = 8.8           -- z Pos where to spawn the honor exchange NPC
-Config.TokenNpcO = 3.64          -- orientation to spawn the honor exchange NPC
+Config.TokenNpcMapId[1] = 1         -- Map where to spawn the honor exchange NPC
+Config.TokenNpcX[1] = 1976.61       -- x Pos where to spawn the honor exchange NPC
+Config.TokenNpcY[1] = -4784.64      -- y Pos where to spawn the honor exchange NPC
+Config.TokenNpcZ[1] = 57.0          -- z Pos where to spawn the honor exchange NPC
+Config.TokenNpcO[1] = 5.630         -- orientation to spawn the honor exchange NPC
+
+Config.TokenNpcMapId[2] = 0         -- Map where to spawn the honor exchange NPC
+Config.TokenNpcX[2] = -8776.29      -- x Pos where to spawn the honor exchange NPC
+Config.TokenNpcY[2] = 427.62        -- y Pos where to spawn the honor exchange NPC
+Config.TokenNpcZ[2] = 105.23        -- z Pos where to spawn the honor exchange NPC
+Config.TokenNpcO[2] = 4.57          -- orientation to spawn the honor exchange NPC
 
 Config.MissingTokenConditionsMessage = 'You do not meet all conditions to obtain this.'
 Config.TokenExchangeSuccessfulMessage = 'Thank you! The token was added to your inventory.'
@@ -162,48 +174,55 @@ Config.GainTokenEntry[1] = 31093
 --put either item entry the player needs to own into this. If they own any of the listed items, they may buy the next. Empty for [1] cause no prerequesites.
 --this array should list the token from the previous tier and ALL armor pieces, that a player could buy with the previous token
 Config.Requirement[1] = {}      --if length of array is 0, the condition is always true
-
---todo: Config.Requirement[n] needs lists of ALL items per slot
+Config.TokenGossipOptionText[1] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for gloves.'
 
 Config.MarkEntry[2] = { 20558, 20559, 20560 }
 Config.MarkCount[2] = { 10, 3, 1 }
 Config.GainTokenEntry[2] = 34858
 Config.Requirement[2] = { 31093,16440,16448,16454,16463,16471,16484,17584,17608,29607,16540,16548,16555,16560,16571,16574,17588,17620,29613 }
+Config.TokenGossipOptionText[2] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for boots. You\' also required to own some gloves or their token.'
 
 Config.MarkEntry[3] = { 20558, 20559, 20560 }
 Config.MarkCount[3] = { 10, 3, 1 }
 Config.GainTokenEntry[3] = 31102
 Config.Requirement[3] = { 34858,16437,16446,16459,16462,16472,16483,17583,17607,29606,16539,16545,16554,16558,16569,16573,17586,17618,29612 }
+Config.TokenGossipOptionText[3] = 'Shoulders'
 
 Config.MarkEntry[4] = { 20558, 20559, 20560 }
 Config.MarkCount[4] = { 10, 3, 1 }
 Config.GainTokenEntry[4] = 31099
 Config.Requirement[4] = { 31102,16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
+Config.TokenGossipOptionText[4] = 'Pants'
 
 Config.MarkEntry[5] = { 20558, 20559, 20560 }
 Config.MarkCount[5] = { 10, 3, 1 }
 Config.GainTokenEntry[5] = 31096
 Config.Requirement[5] = { 31099,16442,16450,16456,16467,16475,16479,17579,17603,29608,16534,16543,16552,16564,16567,16579,17593,17625,29614 }
+Config.TokenGossipOptionText[5] = 'Helmet'
 
 Config.MarkEntry[6] = { 20558, 20559, 20560 }
 Config.MarkCount[6] = { 10, 3, 1 }
 Config.GainTokenEntry[6] = 31090
 Config.Requirement[6] = { 31096,16451,16455,16441,16465,16474,16478,17578,17602,29610,16533,16542,16550,16561,16566,16578,17591,17623,29616 }
+Config.TokenGossipOptionText[6] = 'Chest'
 
 Config.MarkEntry[7] = { 20558, 20559, 20560 }
 Config.MarkCount[7] = { 10, 3, 1 }
 Config.GainTokenEntry[7] = 34855
 Config.Requirement[7] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
+Config.TokenGossipOptionText[7] = '2h'
 
 Config.MarkEntry[8] = { 20558, 20559, 20560 }
 Config.MarkCount[8] = { 10, 3, 1 }
 Config.GainTokenEntry[8] = 34852
 Config.Requirement[8] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
+Config.TokenGossipOptionText[8] = '1h'
 
 Config.MarkEntry[9] = { 20558, 20559, 20560 }
 Config.MarkCount[9] = { 10, 3, 1 }
 Config.GainTokenEntry[9] = 34853
 Config.Requirement[9] = {31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615}
+Config.TokenGossipOptionText[9] = 'Offhand'
 
 ------------------------------------------
 -- NO ADJUSTMENTS REQUIRED BELOW THIS LINE
@@ -330,13 +349,25 @@ local function GiveTheToken( player, intid )
     player:AddItem( Config.GainTokenEntry[intid], 1 )
 end
 
+local function eI_TokenOnHello(event, player, creature)
+    if player == nil then return end
+
+    local n
+    for n = 1,#Config.GainTokenEntry do
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipOptionText[n], Config.ItemNpcEntry, n)
+    end
+
+    player:GossipSendMenu(Config.ItemGossipText, creature, 0)
+end
+
 local function eI_TokenOnGossipSelect( event, player, object, sender, intid, code, menu_id )
-    if HasHonorAndMarksAndRequiredItems( player, intid ) then
+    if eI_HasHonorAndMarksAndRequiredItems( player, intid ) then
         RemoveTheHonorAndMarks( intid )
         GiveTheToken( intid )
     else
         player:SendBroadcastMessage(Config.MissingTokenConditionsMessage)
     end
+    player:GossipComplete()
 end
 
 ------------------------------------------------------------------------------------------------
@@ -346,27 +377,35 @@ local function eI_CloseLua(eI_CloseLua)
         local map
         map = GetMapById(Config.ItemNpcMapId)
         local npcItemObject = map:GetWorldObject(npcItemObjectGuid)
-        npcItemObject:DespawnOrUnsummon(0)
+        if npcItemObject ~= nil then
+            npcItemObject:DespawnOrUnsummon(0)
+        end
     end
 
     if npcHonorObjectGuid ~= nil then
         local map
         map = GetMapById(Config.HonorNpcMapId)
         local npcHonorObject = map:GetWorldObject(npcHonorObjectGuid)
-        npcHonorObject:DespawnOrUnsummon(0)
+        if npcHonorObject then
+            npcHonorObject:DespawnOrUnsummon(0)
+        end
     end
 
-    if npcTokenObjectGuid ~= nil then
-        map = GetMapById(Config.TokenNpcMapId)
-        local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid)
-        npcTokenObject:DespawnOrUnsummon(0)
+    if npcTokenObjectGuid[1] ~= nil then
+        for n = 1, #Config.TokenNpcMapId do
+            map = GetMapById(Config.TokenNpcMapId[n])
+            local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid[n])
+            if npcTokenObject then
+                npcTokenObject:DespawnOrUnsummon(0)
+            end
+        end
     end
 end
 
 --Startup:
 npcItemObjectGuid = nil
 npcHonorObjectGuid = nil
-npcTokenObjectGuid = nil
+npcTokenObjectGuid = {}
 
 if Config.ItemNpcOn == 1 then
     npcItemObject = PerformIngameSpawn(1, Config.ItemNpcEntry, Config.ItemNpcMapId, Config.ItemNpcInstanceId, Config.ItemNpcX, Config.ItemNpcY, Config.ItemNpcZ, Config.ItemNpcO)
@@ -386,9 +425,12 @@ if Config.HonorNpcOn == 1 then
 end
 
 if Config.TokenNpcOn == 1 then
-    npcTokenObject = PerformIngameSpawn(1, Config.TokenNpcEntry, Config.TokenNpcMapId, Config.TokenNpcInstanceId, Config.TokenNpcX, Config.TokenNpcY, Config.TokenNpcZ, Config.TokenNpcO)
-    npcTokenObjectGuid = npcTokenObject:GetGUID()
+    for n = 1, #Config.TokenNpcMapId do
+        local npcTokenObject = PerformIngameSpawn(1, Config.TokenNpcEntry, Config.TokenNpcMapId[n], Config.TokenNpcInstanceId, Config.TokenNpcX[n], Config.TokenNpcY[n], Config.TokenNpcZ[n], Config.TokenNpcO[n])
+        npcTokenObjectGuid[n] = npcTokenObject:GetGUID()
+    end
 
+    RegisterCreatureGossipEvent(Config.TokenNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_TokenOnHello)
     RegisterCreatureGossipEvent(Config.TokenNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_TokenOnGossipSelect)
 end
 
