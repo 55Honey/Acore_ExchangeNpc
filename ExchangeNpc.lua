@@ -149,7 +149,8 @@ Config.GainGoldAmount[4] = 50           -- Gain Gold amount per turn in
 Config.TokenNpcEntry = 1116003      -- DB entry. Must match this script's SQL for the world DB
 Config.ShowAllTokens = 0            -- If 1 all token gossips are shown regardless of pre-owned Config.Requirement
 Config.TokenNpcInstanceId = 0
--- todo: needs new position
+Config.TokenGossipText = 92105
+
 Config.TokenNpcMapId[1] = 1         -- Map where to spawn the honor exchange NPC
 Config.TokenNpcX[1] = 1976.61       -- x Pos where to spawn the honor exchange NPC
 Config.TokenNpcY[1] = -4784.64      -- y Pos where to spawn the honor exchange NPC
@@ -366,7 +367,7 @@ local function eI_TokenOnHello(event, player, creature)
         end
     end
 
-    player:GossipSendMenu(Config.ItemGossipText, creature, 0)
+    player:GossipSendMenu(Config.TokenGossipText, creature, 0)
 end
 
 local function eI_TokenOnGossipSelect( event, player, object, sender, intid, code, menu_id )
