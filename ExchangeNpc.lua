@@ -147,6 +147,7 @@ Config.GainGoldAmount[4] = 50           -- Gain Gold amount per turn in
 -- Token Exchange NPC
 ------------------------------------------------------------------------------------------------
 Config.TokenNpcEntry = 1116003      -- DB entry. Must match this script's SQL for the world DB
+Config.ShowAllTokens = 0            -- If 1 all token gossips are shown regardless of pre-owned Config.Requirement
 Config.TokenNpcInstanceId = 0
 -- todo: needs new position
 Config.TokenNpcMapId[1] = 1         -- Map where to spawn the honor exchange NPC
@@ -173,56 +174,56 @@ Config.MarkCount[1] = { 10, 3, 1 }
 Config.GainTokenEntry[1] = 31093
 --put either item entry the player needs to own into this. If they own any of the listed items, they may buy the next. Empty for [1] cause no prerequesites.
 --this array should list the token from the previous tier and ALL armor pieces, that a player could buy with the previous token
-Config.Requirement[1] = {}      --if length of array is 0, the condition is always true
-Config.TokenGossipOptionText[1] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for gloves.'
+Config.Requirement[1] = 0      --if value 0, the condition is always true
+Config.TokenGossipOptionText[1] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for Gloves.'
 
 Config.MarkEntry[2] = { 20558, 20559, 20560 }
 Config.MarkCount[2] = { 10, 3, 1 }
 Config.GainTokenEntry[2] = 34858
 Config.Requirement[2] = { 31093,16440,16448,16454,16463,16471,16484,17584,17608,29607,16540,16548,16555,16560,16571,16574,17588,17620,29613 }
-Config.TokenGossipOptionText[2] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for boots. You\' also required to own some gloves or their token.'
+Config.TokenGossipOptionText[2] = 'It costs 30000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for Boots.'
 
 Config.MarkEntry[3] = { 20558, 20559, 20560 }
 Config.MarkCount[3] = { 10, 3, 1 }
 Config.GainTokenEntry[3] = 31102
 Config.Requirement[3] = { 34858,16437,16446,16459,16462,16472,16483,17583,17607,29606,16539,16545,16554,16558,16569,16573,17586,17618,29612 }
-Config.TokenGossipOptionText[3] = 'Shoulders'
+Config.TokenGossipOptionText[3] = 'It costs 35000 honor, 10 Warsong marks, 3 Arathi marks and 1 Alterac mark to buy a token for  Shoulderpads.'
 
 Config.MarkEntry[4] = { 20558, 20559, 20560 }
-Config.MarkCount[4] = { 10, 3, 1 }
+Config.MarkCount[4] = { 3, 10, 1 }
 Config.GainTokenEntry[4] = 31099
 Config.Requirement[4] = { 31102,16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
-Config.TokenGossipOptionText[4] = 'Pants'
+Config.TokenGossipOptionText[4] = 'It costs 35000 honor, 3 Warsong marks, 10 Arathi marks and 1 Alterac mark to buy a token for Leg Armor.'
 
 Config.MarkEntry[5] = { 20558, 20559, 20560 }
-Config.MarkCount[5] = { 10, 3, 1 }
+Config.MarkCount[5] = { 10, 3, 3 }
 Config.GainTokenEntry[5] = 31096
 Config.Requirement[5] = { 31099,16442,16450,16456,16467,16475,16479,17579,17603,29608,16534,16543,16552,16564,16567,16579,17593,17625,29614 }
-Config.TokenGossipOptionText[5] = 'Helmet'
+Config.TokenGossipOptionText[5] = 'It costs 40000 honor, 10 Warsong marks, 3 Arathi marks and 3 Alterac marks to buy a token for Head Armor.'
 
 Config.MarkEntry[6] = { 20558, 20559, 20560 }
-Config.MarkCount[6] = { 10, 3, 1 }
+Config.MarkCount[6] = { 10, 10, 10 }
 Config.GainTokenEntry[6] = 31090
 Config.Requirement[6] = { 31096,16451,16455,16441,16465,16474,16478,17578,17602,29610,16533,16542,16550,16561,16566,16578,17591,17623,29616 }
-Config.TokenGossipOptionText[6] = 'Chest'
+Config.TokenGossipOptionText[6] = 'It costs 50000 honor, 10 Warsong marks, 10 Arathi marks and 10 Alterac marks to buy a token for Chest Armor.'
 
 Config.MarkEntry[7] = { 20558, 20559, 20560 }
-Config.MarkCount[7] = { 10, 3, 1 }
+Config.MarkCount[7] = { 30, 10, 10 }
 Config.GainTokenEntry[7] = 34855
 Config.Requirement[7] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
-Config.TokenGossipOptionText[7] = '2h'
+Config.TokenGossipOptionText[7] = 'It costs 75000 honor, 10 Warsong marks, 10 Arathi marks and 10 Alterac marks to buy a token for a two-handed Weapon.'
 
 Config.MarkEntry[8] = { 20558, 20559, 20560 }
-Config.MarkCount[8] = { 10, 3, 1 }
+Config.MarkCount[8] = { 20, 6, 6 }
 Config.GainTokenEntry[8] = 34852
 Config.Requirement[8] = { 31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
-Config.TokenGossipOptionText[8] = '1h'
+Config.TokenGossipOptionText[8] = 'It costs 50000 honor, 20 Warsong marks, 6 Arathi marks and 6 Alterac mark to buy a token for a one-handed Weapon.'
 
 Config.MarkEntry[9] = { 20558, 20559, 20560 }
-Config.MarkCount[9] = { 10, 3, 1 }
+Config.MarkCount[9] = { 10, 4, 4 }
 Config.GainTokenEntry[9] = 34853
 Config.Requirement[9] = {31090,16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615}
-Config.TokenGossipOptionText[9] = 'Offhand'
+Config.TokenGossipOptionText[9] = 'It costs 25000 honor, 10 Warsong marks, 4 Arathi marks and 4 Alterac marks to buy a token for an Offhand Weapon.'
 
 ------------------------------------------
 -- NO ADJUSTMENTS REQUIRED BELOW THIS LINE
@@ -309,9 +310,22 @@ local function eI_HonorOnGossipSelect(event, player, object, sender, intid, code
 end
 
 -- Token NPC logic:
+local function eI_HasPreviousToken( player, intid )
+    if Config.Requirement[intid] == 0 then
+        return true
+    else
+        for n = 1, #Config.Requirement[intid] do
+            if player:HasItem( Config.Requirement[intid][n], 1, true ) then
+                return true
+            end
+        end
+        return false
+    end
+end
+
 local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
 
-    -- check if player has the marks they need to turn in, do not seach in bank.
+    -- check if player has the marks they need to turn in, do not search in bank.
     for n = 1, #Config.MarkEntry[intid] do
         if not player:HasItem( Config.MarkEntry[intid][n], Config.MarkCount[intid][n], false ) then
             return false
@@ -324,14 +338,7 @@ local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
     end
 
     -- check if the player owns the previous set item or the token for it. Also search in bank.
-    if #Config.Requirement[intid] == 0 then
-        return true
-    else
-        for n = 1, #Config.Requirement[intid] do
-            if player:HasItem( Config.Requirement[intid][n], 1, true ) then
-                return false
-            end
-        end
+    if eI_HasPreviousToken( player, intid ) == true then
         return true
     end
 
@@ -354,7 +361,9 @@ local function eI_TokenOnHello(event, player, creature)
 
     local n
     for n = 1,#Config.GainTokenEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipOptionText[n], Config.ItemNpcEntry, n)
+        if Config.ShowAllTokens == 1 or eI_HasPreviousToken( player, n ) == true then
+            player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipOptionText[n], Config.ItemNpcEntry, n)
+        end
     end
 
     player:GossipSendMenu(Config.ItemGossipText, creature, 0)
