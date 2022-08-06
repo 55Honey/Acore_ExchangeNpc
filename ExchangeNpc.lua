@@ -462,6 +462,11 @@ npcTokenObjectGuid = {}
 if Config.ItemNpcOn == 1 then
     npcItemObject = PerformIngameSpawn(1, Config.ItemNpcEntry, Config.ItemNpcMapId, Config.ItemNpcInstanceId, Config.ItemNpcX, Config.ItemNpcY, Config.ItemNpcZ, Config.ItemNpcO)
     npcItemObjectGuid = npcItemObject:GetGUID()
+    if npcItemObject then
+        npcItemObject:CastSpell(npcItemObject,65712,true)
+        npcItemObject:CastSpell(npcItemObject,48200,true)
+    end
+
 
     RegisterCreatureGossipEvent(Config.ItemNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_ItemOnHello)
     RegisterCreatureGossipEvent(Config.ItemNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_ItemOnGossipSelect)
@@ -470,7 +475,9 @@ end
 if Config.HonorNpcOn == 1 then
     npcHonorObject = PerformIngameSpawn(1, Config.HonorNpcEntry, Config.HonorNpcMapId, Config.HonorNpcInstanceId, Config.HonorNpcX, Config.HonorNpcY, Config.HonorNpcZ, Config.HonorNpcO)
     npcHonorObjectGuid = npcHonorObject:GetGUID()
-    npcHonorObject:CastSpell(npcItemObject,15473,true)
+    if npcHonorObject then
+        npcHonorObject:CastSpell(npcItemObject,15473,true)
+    end
 
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_HonorOnHello)
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_HonorOnGossipSelect)
