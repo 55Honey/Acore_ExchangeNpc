@@ -24,7 +24,8 @@ Config.TurnInItemEntry = {}
 Config.TurnInItemAmount = {}
 Config.GainItemEntry = {}
 Config.GainItemAmount = {}
-Config.ItemGossipOptionText = {}
+Config.ItemGossipOptionTextA = {}
+Config.ItemGossipOptionTextB = {}
 
 Config.TurnInHonorAmount = {}
 Config.GainGoldAmount = {}
@@ -80,43 +81,50 @@ Config.TurnInItemEntry[1] = 14344 --Large Brilliant Shard
 Config.TurnInItemAmount[1] = 1
 Config.GainItemEntry[1] = 22447 --Lesser Planar Essence
 Config.GainItemAmount[1] = 1
-Config.ItemGossipOptionText[1] = 'Take 1 of my Large Brilliant Shards and ask Chromie to send me 1 of her Lesser Planar Essence by mail.'
+Config.ItemGossipOptionTextA[1] = ' of my Large Brilliant Shards and ask Chromie to send me '
+Config.ItemGossipOptionTextB[1] = ' of her Lesser Planar Essence by mail.'
 
 Config.TurnInItemEntry[2] = 12809 --Guardian Stone
 Config.TurnInItemAmount[2] = 1
 Config.GainItemEntry[2] = 22452 --Primal Earth
 Config.GainItemAmount[2] = 1
-Config.ItemGossipOptionText[2] = 'Take 1 of my Guardian Stone and ask Chromie to send me 1 of her Primal Earth by mail.'
+Config.ItemGossipOptionTextA[2] = ' of my Guardian Stone and ask Chromie to send me '
+Config.ItemGossipOptionTextB[2] = ' of her Primal Earth by mail.'
 
 Config.TurnInItemEntry[3] = 13468 --Black Lotus
 Config.TurnInItemAmount[3] = 1
 Config.GainItemEntry[3] = 22794 --Fel Lotus
 Config.GainItemAmount[3] = 1
-Config.ItemGossipOptionText[3] = 'Take 1 of my Black Lotus and ask Chromie to send me 1 of her Fel Lotus by mail.'
+Config.ItemGossipOptionTextA[3] = ' of my Black Lotus and ask Chromie to send me '
+Config.ItemGossipOptionTextB[3] = ' of her Fel Lotus by mail.'
 
 Config.TurnInItemEntry[4] = 7972 --Ichor of Undeath
 Config.TurnInItemAmount[4] = 1
 Config.GainItemEntry[4] = 22577 --Mote of Shadow
 Config.GainItemAmount[4] = 1
-Config.ItemGossipOptionText[4] = 'Take 1 of my Ichor of Undeath and ask Chromie to send me 1 of her Mote of Shadow by mail.'
+Config.ItemGossipOptionTextA[4] = ' of my Ichor of Undeath and ask Chromie to send me '
+Config.ItemGossipOptionTextB[4] = ' of her Mote of Shadow by mail.'
 
 Config.TurnInItemEntry[5] = 7069 --Elemental Air
 Config.TurnInItemAmount[5] = 1
 Config.GainItemEntry[5] = 22572 --Mote of Air
 Config.GainItemAmount[5] = 1
-Config.ItemGossipOptionText[5] = 'Take 1 of my Elemental Air and ask Chromie to send me 1 of her Mote of Air by mail.'
+Config.ItemGossipOptionTextA[5] = ' of my Elemental Air and ask Chromie to send me '
+Config.ItemGossipOptionTextB[5] = ' of her Mote of Air by mail.'
 
 Config.TurnInItemEntry[6] = 18512 --Larval Acid
 Config.TurnInItemAmount[6] = 1
 Config.GainItemEntry[6] = 21886 --Primal Life
 Config.GainItemAmount[6] = 1
-Config.ItemGossipOptionText[6] = 'Take 1 of my Larval Acid and ask Chromie to send me 1 of her Primal Life by mail.'
+Config.ItemGossipOptionTextA[6] = ' of my Larval Acid and ask Chromie to send me '
+Config.ItemGossipOptionTextB[6] = ' of her Primal Life by mail.'
 
--- Config.TurnInItemEntry[7] = 20725 --Nexus Crystal
--- Config.TurnInItemAmount[7] = 1
--- Config.GainItemEntry[7] = 22448 --Small Prismatic Shard
--- Config.GainItemAmount[7] = 1
--- Config.ItemGossipOptionText[7] = 'Take 1 of my Nexus Crystal and ask Chromie to send me 1 of her Small Prismatic Shard by mail.'
+Config.TurnInItemEntry[7] = 20725 --Nexus Crystal
+Config.TurnInItemAmount[7] = 1
+Config.GainItemEntry[7] = 22448 --Small Prismatic Shard
+Config.GainItemAmount[7] = 1
+Config.ItemGossipOptionTextA[7] = ' of my Nexus Crystal and ask Chromie to send me '
+Config.ItemGossipOptionTextB[7] = ' of her Small Prismatic Shard by mail.'
 
 ------------------------------------------------------------------------------------------------
 -- Honor Exchange NPC
@@ -232,12 +240,16 @@ Config.TokenGossipOptionText[9] = 'It costs 25000 honor, 10 Warsong marks, 4 Ara
 ------------------------------------------
 
 -- Item NPC Logic:
+local function eI_BuildExchangeString( id, amount )
+    return 'Take ' .. Config.TurnInItemAmount[id] * amount .. Config.ItemGossipOptionTextA[id] .. Config.GainItemAmount[id] * amount .. Config.ItemGossipOptionTextB[id]
+end
+
 local function eI_ItemOnHello(event, player, creature)
     if player == nil then return end
 
     local n
     for n = 1,#Config.TurnInItemEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.ItemGossipOptionText[n], Config.ItemNpcEntry, n-1)
+        player:GossipMenuAddItem(OPTION_ICON_CHAT, eI_BuildExchangeString( n, 1) , Config.ItemNpcEntry, n-1)
     end
 
     player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, 'Let\'s trade', Config.ItemNpcEntry, 10000)
@@ -248,24 +260,53 @@ end
 local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code, menu_id)
 
     if player == nil then return end
+    local GiveAmount
+    local Amount
+    local ExchangeId
+
+    print('intid: ' .. intid)
 
     if intid < 1000 then
         player:GossipComplete()
-        local exchangeId = intid + 1
-        local newintid = intid + 1000
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, 'Yes! '..Config.ItemGossipOptionText[exchangeId], Config.ItemNpcEntry, newintid)
-        player:GossipSendMenu(Config.ItemGossipConfirmationText, object, 0)
+        local ExchangeId = intid + 1
+        player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 1 ), Config.ItemNpcEntry, intid + 1000)
+        player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 5 ), Config.ItemNpcEntry, intid + 2000)
+        player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 10 ), Config.ItemNpcEntry, intid + 3000 )
+        player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 20 ), Config.ItemNpcEntry, intid + 4000 )
+        player:GossipSendMenu( Config.ItemGossipConfirmationText, object, 0 )
     elseif intid == 10000 then
-        player:SendListInventory(object)
+        player:SendListInventory( object )
     else
-        local playerGuid = tonumber(tostring(player:GetGUID()))
-        local exchangeId = intid - 999
-        if player:HasItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId], false) then
-            player:RemoveItem(Config.TurnInItemEntry[exchangeId], Config.TurnInItemAmount[exchangeId])
-            SendMail(Config.ItemMailSubject, Config.ItemMailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[exchangeId], Config.GainItemAmount[exchangeId])
-            player:SendBroadcastMessage(Config.ItemExchangeSuccessfulMessage)
+        if intid >= 4000 then
+            ExchangeId = intid - 3999
+            Amount = 20
+            GiveAmount = Config.TurnInItemAmount[ ExchangeId ] * Amount
+        elseif intid >= 3000 then
+            ExchangeId = intid - 2999
+            Amount = 10
+            GiveAmount = Config.TurnInItemAmount[ ExchangeId ] * Amount
+        elseif intid >= 2000 then
+            ExchangeId = intid - 1999
+            Amount = 5
+            GiveAmount = Config.TurnInItemAmount[ ExchangeId ] * Amount
         else
-            player:SendBroadcastMessage(Config.NotEnoughItemsMessage)
+            ExchangeId = intid - 999
+            Amount = 1
+            GiveAmount = Config.TurnInItemAmount[ ExchangeId ]
+        end
+
+        local playerGuid = tonumber( tostring( player:GetGUID() ) )
+
+        if player:HasItem( Config.TurnInItemEntry[ ExchangeId ], GiveAmount, false ) then
+            player:RemoveItem( Config.TurnInItemEntry[ ExchangeId ], GiveAmount )
+
+            for n = 1, Amount do
+                SendMail( Config.ItemMailSubject, Config.ItemMailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[ ExchangeId ], Config.GainItemAmount[ ExchangeId ] )
+            end
+
+            player:SendBroadcastMessage( Config.ItemExchangeSuccessfulMessage )
+        else
+            player:SendBroadcastMessage( Config.NotEnoughItemsMessage )
         end
         player:GossipComplete()
     end
@@ -290,22 +331,22 @@ local function eI_HonorOnGossipSelect(event, player, object, sender, intid, code
 
     if intid < 1000 then
         player:GossipComplete()
-        local exchangeId = intid + 1
+        local ExchangeId = intid + 1
         local newintid = intid + 1000
-        local HonorGossipOptionText = 'Yes! Turn in '..Config.TurnInHonorAmount[exchangeId]..' honor to gain '..Config.GainGoldAmount[exchangeId]..' gold.'
+        local HonorGossipOptionText = 'Yes! Turn in '..Config.TurnInHonorAmount[ ExchangeId ]..' honor to gain '..Config.GainGoldAmount[ ExchangeId ]..' gold.'
         player:GossipMenuAddItem(OPTION_ICON_CHAT, HonorGossipOptionText, Config.HonorNpcEntry, newintid)
         player:GossipSendMenu(Config.HonorGossipConfirmationText, object, 0)
     else
         local playerGuid = tonumber(tostring(player:GetGUID()))
-        local exchangeId = intid - 999
+        local ExchangeId = intid - 999
 
         local playerHonor = player:GetHonorPoints()
-        if playerHonor >= Config.TurnInHonorAmount[exchangeId] then
-            player:SetHonorPoints(playerHonor - Config.TurnInHonorAmount[exchangeId])
-            player:ModifyMoney(Config.GainGoldAmount[exchangeId] * 10000)
-            player:SendBroadcastMessage(Config.HonorExchangeSuccessfulMessage)
+        if playerHonor >= Config.TurnInHonorAmount[ ExchangeId ] then
+            player:SetHonorPoints( playerHonor - Config.TurnInHonorAmount[ ExchangeId ] )
+            player:ModifyMoney( Config.GainGoldAmount[ ExchangeId ] * 10000 )
+            player:SendBroadcastMessage( Config.HonorExchangeSuccessfulMessage )
         else
-            player:SendBroadcastMessage(Config.NotEnoughHonorMessage)
+            player:SendBroadcastMessage( Config.NotEnoughHonorMessage )
         end
         player:GossipComplete()
     end
