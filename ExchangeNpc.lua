@@ -26,6 +26,7 @@ Config.GainItemEntry = {}
 Config.GainItemAmount = {}
 Config.ItemGossipOptionTextA = {}
 Config.ItemGossipOptionTextB = {}
+Config.SendAsOneMail = {}
 
 Config.TurnInHonorAmount = {}
 Config.GainGoldAmount = {}
@@ -83,6 +84,7 @@ Config.GainItemEntry[1] = 22447 --Lesser Planar Essence
 Config.GainItemAmount[1] = 1
 Config.ItemGossipOptionTextA[1] = ' of my Large Brilliant Shards and ask Chromie to send me '
 Config.ItemGossipOptionTextB[1] = ' of her Lesser Planar Essence by mail.'
+Config.SendAsOneMail[1] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[2] = 12809 --Guardian Stone
 Config.TurnInItemAmount[2] = 1
@@ -90,6 +92,7 @@ Config.GainItemEntry[2] = 22452 --Primal Earth
 Config.GainItemAmount[2] = 1
 Config.ItemGossipOptionTextA[2] = ' of my Guardian Stone and ask Chromie to send me '
 Config.ItemGossipOptionTextB[2] = ' of her Primal Earth by mail.'
+Config.SendAsOneMail[2] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[3] = 13468 --Black Lotus
 Config.TurnInItemAmount[3] = 1
@@ -97,6 +100,7 @@ Config.GainItemEntry[3] = 22794 --Fel Lotus
 Config.GainItemAmount[3] = 1
 Config.ItemGossipOptionTextA[3] = ' of my Black Lotus and ask Chromie to send me '
 Config.ItemGossipOptionTextB[3] = ' of her Fel Lotus by mail.'
+Config.SendAsOneMail[3] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[4] = 7972 --Ichor of Undeath
 Config.TurnInItemAmount[4] = 1
@@ -104,6 +108,7 @@ Config.GainItemEntry[4] = 22577 --Mote of Shadow
 Config.GainItemAmount[4] = 1
 Config.ItemGossipOptionTextA[4] = ' of my Ichor of Undeath and ask Chromie to send me '
 Config.ItemGossipOptionTextB[4] = ' of her Mote of Shadow by mail.'
+Config.SendAsOneMail[4] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[5] = 7069 --Elemental Air
 Config.TurnInItemAmount[5] = 1
@@ -111,6 +116,7 @@ Config.GainItemEntry[5] = 22572 --Mote of Air
 Config.GainItemAmount[5] = 1
 Config.ItemGossipOptionTextA[5] = ' of my Elemental Air and ask Chromie to send me '
 Config.ItemGossipOptionTextB[5] = ' of her Mote of Air by mail.'
+Config.SendAsOneMail[5] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[6] = 18512 --Larval Acid
 Config.TurnInItemAmount[6] = 1
@@ -118,6 +124,7 @@ Config.GainItemEntry[6] = 21886 --Primal Life
 Config.GainItemAmount[6] = 1
 Config.ItemGossipOptionTextA[6] = ' of my Larval Acid and ask Chromie to send me '
 Config.ItemGossipOptionTextB[6] = ' of her Primal Life by mail.'
+Config.SendAsOneMail[6] = true  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[7] = 20725 --Nexus Crystal
 Config.TurnInItemAmount[7] = 1
@@ -125,6 +132,7 @@ Config.GainItemEntry[7] = 22448 --Small Prismatic Shard
 Config.GainItemAmount[7] = 1
 Config.ItemGossipOptionTextA[7] = ' of my Nexus Crystal and ask Chromie to send me '
 Config.ItemGossipOptionTextB[7] = ' of her Small Prismatic Shard by mail.'
+Config.SendAsOneMail[7] = true  -- Do all sent items fit into a single stack?
 
 ------------------------------------------------------------------------------------------------
 -- Honor Exchange NPC
@@ -298,8 +306,12 @@ local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code,
         if player:HasItem( Config.TurnInItemEntry[ ExchangeId ], GiveAmount, false ) then
             player:RemoveItem( Config.TurnInItemEntry[ ExchangeId ], GiveAmount )
 
-            for n = 1, Amount do
-                SendMail( Config.ItemMailSubject, Config.ItemMailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[ ExchangeId ], Config.GainItemAmount[ ExchangeId ] )
+            if Config.SendAsOneMail[ ExchangeId ] == true then
+                SendMail( Config.ItemMailSubject, Config.ItemMailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[ ExchangeId ], GiveAmount )
+            else
+                for n = 1, Amount do
+                    SendMail( Config.ItemMailSubject, Config.ItemMailMessage, playerGuid, 0, 61, 5, 0, 0, Config.GainItemEntry[ ExchangeId ], Config.GainItemAmount[ ExchangeId ] )
+                end
             end
 
             player:SendBroadcastMessage( Config.ItemExchangeSuccessfulMessage )
