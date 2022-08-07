@@ -406,7 +406,12 @@ local function RemoveTheHonorAndMarks( player, intid )
 end
 
 local function GiveTheToken( player, intid )
-    player:AddItem( Config.GainTokenEntry[intid], 1 )
+    local item = player:AddItem( Config.GainTokenEntry[intid], 1 )
+    if item then
+        return true
+    else
+        return false
+    end
 end
 
 local function eI_TokenOnHello(event, player, creature)
@@ -424,8 +429,11 @@ end
 
 local function eI_TokenOnGossipSelect( event, player, object, sender, intid, code, menu_id )
     if eI_HasHonorAndMarksAndRequiredItems( player, intid ) then
-        RemoveTheHonorAndMarks( player, intid )
-        GiveTheToken( player, intid )
+        if GiveTheToken( player, intid ) then
+            RemoveTheHonorAndMarks( player, intid )
+        else
+            player:SendBroadcastMessage('You need at least one empty slot in your inventory.')
+        end
     else
         player:SendBroadcastMessage(Config.MissingTokenConditionsMessage)
     end
