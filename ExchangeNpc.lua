@@ -402,7 +402,7 @@ local function RemoveTheHonorAndMarks( player, intid )
     for n = 1, #Config.MarkEntry[intid] do
         player:RemoveItem( Config.MarkEntry[intid][n], Config.MarkCount[intid][n] )
     end
-    player:ModifyHonorPoints( Config.HonorPrice[intid] )
+    player:ModifyHonorPoints( -1 * Config.HonorPrice[intid] )
 end
 
 local function GiveTheToken( player, intid )
