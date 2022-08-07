@@ -326,14 +326,15 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (23, 12795, 29617, 0, 1, 2, 0, 29616, 1, 0, 0, 0, 0, '', ''), -- previous item requirement head
 (23, 12795, 29617, 0, 1, 15, 0, 2, 0, 0, 0, 0, 0, '', ''); -- class
 
-SET @EXTENDED_COSTBOOTS = 2964; -- 52200 honor
-SET @EXTENDED_COSTGLOVES = 2964; -- 52200 honor
-SET @EXTENDED_COSTSHOULDER = 2964; -- 52200 honor
-SET @EXTENDED_COSTHELM = 2964; -- 52200 honor
-SET @EXTENDED_COSTCHEST = 2964; -- 52200 honor
-SET @EXTENDED_COSTLEGS = 2964; -- 52200 honor
-SET @EXTENDED_COST_WEAP1 = 2964; -- 52200 honor 1 handed / offhand
-SET @EXTENDED_COST_WEAP2 = 2964; -- 52200 honor 2 handed
+SET @EXTENDED_COSTBOOTS = 2327;     -- token 34858
+SET @EXTENDED_COSTGLOVES = 1520;    -- token 31093
+SET @EXTENDED_COSTSHOULDER = 1524;  -- token 31102
+SET @EXTENDED_COSTHELM = 1521;      -- token 31096
+SET @EXTENDED_COSTCHEST = 1522;     -- token 31090
+SET @EXTENDED_COSTLEGS = 1523;      -- token 31099
+SET @EXTENDED_COST_WEAP1 = 2321;    -- token 34852
+SET @EXTENDED_COST_WEAP2 = 2325;    -- token 34855
+SET @EXTENDED_COST_OH = 2324;       -- token 34853
 -- pvp vendor alliance epic pvp set
 DELETE FROM `npc_vendor` WHERE (`entry` = 12785) AND `item` IN (16437,16440,16442,16446,16448,16449,16450,16451,16452,16453,16454,16455,16456,16457,16459,16443,16441,16444,16462,16463,16465,16466,16467,16468,16471,16472,16473,16474,16475,16476,16477,16478,16479,16480,16483,16484,17578,17579,17580,17581,17583,17584,17602,17603,17604,17605,17607,17608,29606,29607,29608,29609,29610,29611);
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
@@ -466,15 +467,15 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (12784, 0, 18836, 0, 0, @EXTENDED_COST_WEAP2, 0), -- xbow
 (12784, 0, 18867, 0, 0, @EXTENDED_COST_WEAP2, 0), -- 2 hand mace
 (12784, 0, 23456, 0, 0, @EXTENDED_COST_WEAP1, 0), -- 1 hand sword
-(12784, 0, 23452, 0, 0, @EXTENDED_COST_WEAP1, 0), -- offhand tome
-(12784, 0, 23453, 0, 0, @EXTENDED_COST_WEAP1, 0), -- offhand tome
+(12784, 0, 23452, 0, 0, @EXTENDED_COST_OH, 0),    -- offhand tome
+(12784, 0, 23453, 0, 0, @EXTENDED_COST_OH, 0),    -- offhand tome
 (12784, 0, 23455, 0, 0, @EXTENDED_COST_WEAP2, 0), -- 2 hand mace caster
 (12784, 0, 18827, 0, 0, @EXTENDED_COST_WEAP1, 0), -- 1 hand axe
 (12784, 0, 18855, 0, 0, @EXTENDED_COST_WEAP2, 0), -- gun
 (12784, 0, 18843, 0, 0, @EXTENDED_COST_WEAP1, 0), -- fist weapon
 (12784, 0, 18865, 0, 0, @EXTENDED_COST_WEAP1, 0), -- 1 hand mace
-(12784, 0, 18825, 0, 0, @EXTENDED_COST_WEAP1, 0), -- shield
-(12784, 0, 18847, 0, 0, @EXTENDED_COST_WEAP1, 0); -- fist weapon
+(12784, 0, 18825, 0, 0, @EXTENDED_COST_OH, 0),    -- shield
+(12784, 0, 18847, 0, 0, @EXTENDED_COST_OH, 0);    -- fist weapon
 
 -- pvp vendor horde weapon
 DELETE FROM `npc_vendor` WHERE (`entry` = 12794) AND `item` IN (18835, 23467, 18837, 18826, 18866, 18848, 23469, 23466, 23464, 18871, 18844, 18860, 18868, 23468, 18874, 18840, 23465, 18831, 16345, 18828, 18877);
@@ -486,7 +487,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (12794, 0, 23465, 0, 0, @EXTENDED_COST_WEAP2, 0), -- 2 hand mace caster
 (12794, 0, 18840, 0, 0, @EXTENDED_COST_WEAP1, 0), -- dagger
 (12794, 0, 18874, 0, 0, @EXTENDED_COST_WEAP2, 0), -- 2 hand staff caster
-(12794, 0, 23468, 0, 0, @EXTENDED_COST_WEAP1, 0), -- offhand
+(12794, 0, 23468, 0, 0, @EXTENDED_COST_OH, 0),    -- offhand
 (12794, 0, 18868, 0, 0, @EXTENDED_COST_WEAP2, 0), -- 2 hand mace
 (12794, 0, 18860, 0, 0, @EXTENDED_COST_WEAP2, 0), -- gun
 (12794, 0, 18844, 0, 0, @EXTENDED_COST_WEAP1, 0), -- fist
@@ -494,10 +495,10 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (12794, 0, 23464, 0, 0, @EXTENDED_COST_WEAP1, 0), -- 1 hand mace
 (12794, 0, 18835, 0, 0, @EXTENDED_COST_WEAP2, 0), -- bow
 (12794, 0, 23466, 0, 0, @EXTENDED_COST_WEAP1, 0), -- dagger caster
-(12794, 0, 23469, 0, 0, @EXTENDED_COST_WEAP1, 0), -- offhand
-(12794, 0, 18848, 0, 0, @EXTENDED_COST_WEAP1, 0), -- fist
+(12794, 0, 23469, 0, 0, @EXTENDED_COST_OH, 0),    -- offhand
+(12794, 0, 18848, 0, 0, @EXTENDED_COST_OH, 0),    -- fist
 (12794, 0, 18866, 0, 0, @EXTENDED_COST_WEAP1, 0), -- 1 handed mace
-(12794, 0, 18826, 0, 0, @EXTENDED_COST_WEAP1, 0), -- shield
+(12794, 0, 18826, 0, 0, @EXTENDED_COST_OH, 0),    -- shield
 (12794, 0, 18837, 0, 0, @EXTENDED_COST_WEAP2, 0), -- xbow
 (12794, 0, 23467, 0, 0, @EXTENDED_COST_WEAP1, 0); -- 1 hand sword
 
