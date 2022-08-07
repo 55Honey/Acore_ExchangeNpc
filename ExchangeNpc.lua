@@ -264,8 +264,6 @@ local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code,
     local Amount
     local ExchangeId
 
-    print('intid: ' .. intid)
-
     if intid < 1000 then
         player:GossipComplete()
         local ExchangeId = intid + 1
@@ -376,7 +374,7 @@ local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
     end
 
     -- check if the player has enough honor
-    if not player:GetHonorPoints() >= Config.HonorPrice[intid] then
+    if player:GetHonorPoints() < Config.HonorPrice[intid] then
         return false
     end
 
@@ -389,8 +387,8 @@ local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
 end
 
 local function RemoveTheHonorAndMarks( player, intid )
-    for n = 1, #Config.MarkEntry do
-        player:RemoveItem( Config.MarkEntry[intid][n], itemCount )
+    for n = 1, #Config.MarkEntry[intid] do
+        player:RemoveItem( Config.MarkEntry[intid][n], Config.MarkCount[intid][n] )
     end
     player:ModifyHonorPoints( Config.HonorPrice[intid] )
 end
@@ -414,8 +412,8 @@ end
 
 local function eI_TokenOnGossipSelect( event, player, object, sender, intid, code, menu_id )
     if eI_HasHonorAndMarksAndRequiredItems( player, intid ) then
-        RemoveTheHonorAndMarks( intid )
-        GiveTheToken( intid )
+        RemoveTheHonorAndMarks( player, intid )
+        GiveTheToken( player, intid )
     else
         player:SendBroadcastMessage(Config.MissingTokenConditionsMessage)
     end
@@ -476,7 +474,7 @@ if Config.HonorNpcOn == 1 then
     npcHonorObject = PerformIngameSpawn(1, Config.HonorNpcEntry, Config.HonorNpcMapId, Config.HonorNpcInstanceId, Config.HonorNpcX, Config.HonorNpcY, Config.HonorNpcZ, Config.HonorNpcO)
     npcHonorObjectGuid = npcHonorObject:GetGUID()
     if npcHonorObject then
-        npcHonorObject:CastSpell(npcItemObject,15473,true)
+        npcHonorObject:CastSpell(npcItemObject,65712,true)
     end
 
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_HonorOnHello)
