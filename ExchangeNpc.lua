@@ -417,6 +417,11 @@ end
 local function eI_TokenOnHello(event, player, creature)
     if player == nil then return end
 
+    if not player:HasAchieved( 452 ) and not player:HasAchieved( 440 ) then
+        player:SendBroadcastMessage('You need at least 10k honorable kills to buy epic PvP items.')
+        return
+    end
+
     local n
     for n = 1,#Config.GainTokenEntry do
         if Config.ShowAllTokens == 1 or eI_HasPreviousToken( player, n ) == true then
