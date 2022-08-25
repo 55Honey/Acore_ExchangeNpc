@@ -441,8 +441,8 @@ local function eI_TokenOnGossipSelect( event, player, object, sender, intid, cod
             if player:HasItem( Config.GainTokenEntry[n], 1, false ) then
                 player:RemoveItem( Config.GainTokenEntry[n], 1 )
                 player:ModifyHonorPoints(Config.HonorPrice[n])
-                for n = 1,3 do
-                    player:AddItem( Config.MarkEntry[n], Config.MarkCount[n] )
+                for n = 1, #Config.MarkEntry[intid] do
+                    player:AddItem( Config.MarkEntry[intid][n], Config.MarkCount[intid][n] )
                 end
             end
             return
