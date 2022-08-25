@@ -181,6 +181,7 @@ Config.TokenNpcO[2] = 4.57          -- orientation to spawn the honor exchange N
 
 Config.MissingTokenConditionsMessage = 'You do not meet all conditions to obtain this.'
 Config.TokenExchangeSuccessfulMessage = 'Thank you! The token was added to your inventory.'
+Config.TokenGossipRefundText = 'I made a mistake and want to refund a token in my inventory.'
 
 -- 1:Feet 2:Hands 3:Legs 4:Chest 5:Head 6:Shoulders 7:Weapons2h 8:Weapons1h 9:Offhand
 Config.HonorPrice = { 30000, 30000, 35000, 50000, 40000, 35000, 75000, 50000, 25000 }
@@ -429,10 +430,26 @@ local function eI_TokenOnHello(event, player, creature)
         end
     end
 
+    player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipRefundText, Config.ItemNpcEntry, 1000)
+
     player:GossipSendMenu(Config.TokenGossipText, creature, 0)
 end
 
 local function eI_TokenOnGossipSelect( event, player, object, sender, intid, code, menu_id )
+    if intid == 1000 then
+        for n = 1,#Config.GainTokenEntry do
+            if player:HasItem( Config.GainTokenEntry[n], 1, false ) then
+                player:RemoveItem( Config.GainTokenEntry[n], 1 )
+                player:ModifyHonorPoints(Config.HonorPrice[n])
+                for n = 1,3 do
+                    player:AddItem( Config.MarkEntry[n], Config.MarkCount[n] )
+                end
+            end
+            return
+        end
+        return
+    end
+
     if eI_HasHonorAndMarksAndRequiredItems( player, intid ) then
         if GiveTheToken( player, intid ) then
             RemoveTheHonorAndMarks( player, intid )
