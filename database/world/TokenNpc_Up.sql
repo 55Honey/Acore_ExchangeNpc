@@ -477,6 +477,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (12784, 0, 18825, 0, 0, @EXTENDED_COST_OH, 0),    -- shield
 (12784, 0, 18847, 0, 0, @EXTENDED_COST_OH, 0);    -- fist weapon
 
+UPDATE `creature_template` SET `npcflag` = 128 WHERE (`entry` = 12794);
 -- pvp vendor horde weapon
 DELETE FROM `npc_vendor` WHERE (`entry` = 12794) AND `item` IN (18835, 23467, 18837, 18826, 18866, 18848, 23469, 23466, 23464, 18871, 18844, 18860, 18868, 23468, 18874, 18840, 23465, 18831, 16345, 18828, 18877);
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
