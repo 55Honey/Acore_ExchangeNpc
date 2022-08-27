@@ -108,7 +108,7 @@ Config.GainItemEntry[4] = 22577 --Mote of Shadow
 Config.GainItemAmount[4] = 1
 Config.ItemGossipOptionTextA[4] = ' of my Ichor of Undeath and ask Chromie to send me '
 Config.ItemGossipOptionTextB[4] = ' of her Mote of Shadow by mail.'
-Config.SendAsOneMail[4] = true  -- Do all sent items fit into a single stack?
+Config.SendAsOneMail[4] = false  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[5] = 7069 --Elemental Air
 Config.TurnInItemAmount[5] = 1
@@ -116,7 +116,7 @@ Config.GainItemEntry[5] = 22572 --Mote of Air
 Config.GainItemAmount[5] = 1
 Config.ItemGossipOptionTextA[5] = ' of my Elemental Air and ask Chromie to send me '
 Config.ItemGossipOptionTextB[5] = ' of her Mote of Air by mail.'
-Config.SendAsOneMail[5] = true  -- Do all sent items fit into a single stack?
+Config.SendAsOneMail[5] = false  -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[6] = 18512 --Larval Acid
 Config.TurnInItemAmount[6] = 1
