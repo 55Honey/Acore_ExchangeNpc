@@ -418,8 +418,11 @@ end
 local function eI_TokenOnHello(event, player, creature)
     if player == nil then return end
 
+    player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipRefundText, Config.ItemNpcEntry, 1000)
+
     if not player:HasAchieved( 452 ) and not player:HasAchieved( 440 ) then
         player:SendBroadcastMessage('You need at least 10k honorable kills to buy epic PvP items.')
+        player:GossipSendMenu(Config.TokenGossipText, creature, 0)
         return
     end
 
@@ -429,8 +432,6 @@ local function eI_TokenOnHello(event, player, creature)
             player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipOptionText[n], Config.ItemNpcEntry, n)
         end
     end
-
-    player:GossipMenuAddItem(OPTION_ICON_CHAT, Config.TokenGossipRefundText, Config.ItemNpcEntry, 1000)
 
     player:GossipSendMenu(Config.TokenGossipText, creature, 0)
 end
