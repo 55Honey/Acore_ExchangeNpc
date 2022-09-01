@@ -457,7 +457,7 @@ local function eI_TokenOnGossipSelect( event, player, object, sender, intid, cod
         return
     end
 
-    if intid > 6 and not player:HasAchieved( 439 ) and not HasAchieved( 451 ) then
+    if intid > 6 and not player:HasAchieved( 439 ) and not player:HasAchieved( 451 ) then
         player:SendBroadcastMessage( 'You need at least 20k honorable kills to buy epic PvP weapons.' )
         return
     end
