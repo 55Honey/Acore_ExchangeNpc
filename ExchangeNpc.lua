@@ -379,6 +379,11 @@ end
 
 local function eI_HasHonorAndMarksAndRequiredItems( player, intid )
 
+    if not Config.MarkEntry[intid] then
+        PrintError( 'lua-exchange-npc: Config.MarkEntry[intid] invalid in eI_HasHonorAndMarksAndRequiredItems(). intid: ' .. intid )
+        return false
+    end
+
     -- check if player has the marks they need to turn in, do not search in bank.
     for n = 1, #Config.MarkEntry[intid] do
         if not player:HasItem( Config.MarkEntry[intid][n], Config.MarkCount[intid][n], false ) then
