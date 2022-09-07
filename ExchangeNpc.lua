@@ -168,10 +168,10 @@ Config.TokenNpcInstanceId = 0
 Config.TokenGossipText = 92105
 
 Config.TokenNpcMapId[1] = 1         -- Map where to spawn the honor exchange NPC
-Config.TokenNpcX[1] = 1976.61       -- x Pos where to spawn the honor exchange NPC
-Config.TokenNpcY[1] = -4784.64      -- y Pos where to spawn the honor exchange NPC
-Config.TokenNpcZ[1] = 57.0          -- z Pos where to spawn the honor exchange NPC
-Config.TokenNpcO[1] = 5.630         -- orientation to spawn the honor exchange NPC
+Config.TokenNpcX[1] = 1649.44       -- x Pos where to spawn the honor exchange NPC
+Config.TokenNpcY[1] = -4221.64      -- y Pos where to spawn the honor exchange NPC
+Config.TokenNpcZ[1] = 56.38         -- z Pos where to spawn the honor exchange NPC
+Config.TokenNpcO[1] = 1.16          -- orientation to spawn the honor exchange NPC
 
 Config.TokenNpcMapId[2] = 0         -- Map where to spawn the honor exchange NPC
 Config.TokenNpcX[2] = -8776.29      -- x Pos where to spawn the honor exchange NPC
