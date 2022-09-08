@@ -486,27 +486,33 @@ local function eI_CloseLua(eI_CloseLua)
     if npcItemObjectGuid ~= nil then
         local map
         map = GetMapById(Config.ItemNpcMapId)
-        local npcItemObject = map:GetWorldObject(npcItemObjectGuid)
-        if npcItemObject ~= nil then
-            npcItemObject:DespawnOrUnsummon(0)
+        if map then
+            local npcItemObject = map:GetWorldObject(npcItemObjectGuid)
+            if npcItemObject ~= nil then
+                npcItemObject:DespawnOrUnsummon(0)
+            end
         end
     end
 
     if npcHonorObjectGuid ~= nil then
         local map
         map = GetMapById(Config.HonorNpcMapId)
-        local npcHonorObject = map:GetWorldObject(npcHonorObjectGuid)
-        if npcHonorObject then
-            npcHonorObject:DespawnOrUnsummon(0)
+        if map then
+            local npcHonorObject = map:GetWorldObject(npcHonorObjectGuid)
+            if npcHonorObject then
+                npcHonorObject:DespawnOrUnsummon(0)
+            end
         end
     end
 
     if npcTokenObjectGuid[1] ~= nil then
         for n = 1, #Config.TokenNpcMapId do
             map = GetMapById(Config.TokenNpcMapId[n])
-            local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid[n])
-            if npcTokenObject then
-                npcTokenObject:DespawnOrUnsummon(0)
+            if map then
+                local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid[n])
+                if npcTokenObject then
+                    npcTokenObject:DespawnOrUnsummon(0)
+                end
             end
         end
     end
