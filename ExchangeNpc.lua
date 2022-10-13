@@ -84,7 +84,7 @@ Config.GainItemEntry[1] = 22447 --Lesser Planar Essence
 Config.GainItemAmount[1] = 1
 Config.ItemGossipOptionTextA[1] = ' of my Large Brilliant Shards and ask Chromie to send me '
 Config.ItemGossipOptionTextB[1] = ' of her Lesser Planar Essence by mail.'
-Config.SendAsOneMail[1] = true  -- Do all sent items fit into a single stack?
+Config.SendAsOneMail[1] = false -- Do all sent items fit into a single stack?
 
 Config.TurnInItemEntry[2] = 12809 --Guardian Stone
 Config.TurnInItemAmount[2] = 1
