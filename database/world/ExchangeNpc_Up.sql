@@ -23,6 +23,7 @@ UPDATE `creature_template` SET `npcflag` = 129 WHERE (`entry` = 1116001);
 
 DELETE FROM `npc_vendor` WHERE (`entry` = 1116001);
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
+(1116001, 0, 41534, 0, 0, 0, 0),
 (1116001, 0, 40921, 0, 0, 0, 0),
 (1116001, 0, 40900, 0, 0, 0, 0),
 (1116001, 0, 44928, 0, 0, 0, 0),
