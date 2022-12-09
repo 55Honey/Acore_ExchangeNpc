@@ -199,49 +199,49 @@ Config.TokenGossipOptionText[1] = 'It costs 30000 honor, 10 Warsong marks, 10 Ar
 Config.MarkEntry[2] = { 20558, 20559, 20560 }
 Config.MarkCount[2] = { 10, 10, 5 }
 Config.GainTokenEntry[2] = 31093
-Config.Requirement[2] = { 16437,16446,16459,16462,16472,16483,17583,17607,29606,16539,16545,16554,16558,16569,16573,17586,17618,29612 }
+Config.Requirement[2] = 0
 Config.TokenGossipOptionText[2] = 'It costs 30000 honor, 10 Warsong marks, 10 Arathi marks and 5 Alterac marks to buy a token for Gloves.'
 
 Config.MarkEntry[3] = { 20558, 20559, 20560 }
 Config.MarkCount[3] = { 15, 10, 10}
 Config.GainTokenEntry[3] = 31099
-Config.Requirement[3] = { 16440,16448,16454,16463,16471,16484,17584,17608,29607,16540,16548,16555,16560,16571,16574,17588,17620,29613 }
+Config.Requirement[3] = 0
 Config.TokenGossipOptionText[3] = 'It costs 35000 honor, 15 Warsong marks, 10 Arathi marks and 10 Alterac marks to buy a token for Leg Armor.'
 
 Config.MarkEntry[4] = { 20558, 20559, 20560 }
 Config.MarkCount[4] = { 10, 15, 10 }
 Config.GainTokenEntry[4] = 31090
-Config.Requirement[4] = { 16442,16450,16456,16467,16475,16479,17579,17603,29608,16534,16543,16552,16564,16567,16579,17593,17625,29614 }
+Config.Requirement[4] = 0
 Config.TokenGossipOptionText[4] = 'It costs 50000 honor, 10 Warsong marks, 15 Arathi marks and 10 Alterac marks to buy a token for Chest Armor.'
 
 Config.MarkEntry[5] = { 20558, 20559, 20560 }
 Config.MarkCount[5] = { 15, 15, 10 }
 Config.GainTokenEntry[5] = 31096
-Config.Requirement[5] = { 16452,16453,16443,16466,16473,16477,17581,17605,29609,16535,16541,16549,16563,16565,16577,17592,17624,29615 }
+Config.Requirement[5] = 0
 Config.TokenGossipOptionText[5] = 'It costs 40000 honor, 15 Warsong marks, 15 Arathi marks and 10 Alterac marks to buy a token for Head Armor.'
 
 Config.MarkEntry[6] = { 20558, 20559, 20560 }
 Config.MarkCount[6] = { 15, 15, 15 }
 Config.GainTokenEntry[6] = 31102
-Config.Requirement[6] = { 16451,16455,16441,16465,16474,16478,17578,17602,29610,16533,16542,16550,16561,16566,16578,17591,17623,29616 }
+Config.Requirement[6] = 0
 Config.TokenGossipOptionText[6] = 'It costs 35000 honor, 15 Warsong marks, 15 Arathi marks and 15 Alterac marks to buy a token for  Shoulderpads.'
 
 Config.MarkEntry[7] = { 20558, 20559, 20560 }
 Config.MarkCount[7] = { 40, 40, 20 }
 Config.GainTokenEntry[7] = 34855
-Config.Requirement[7] = { 16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
+Config.Requirement[7] = 0
 Config.TokenGossipOptionText[7] = 'It costs 75000 honor, 40 Warsong marks, 40 Arathi marks and 20 Alterac marks to buy a token for a two-handed Weapon.'
 
 Config.MarkEntry[8] = { 20558, 20559, 20560 }
 Config.MarkCount[8] = { 25, 25, 10 }
 Config.GainTokenEntry[8] = 34852
-Config.Requirement[8] = { 16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
+Config.Requirement[8] = 0
 Config.TokenGossipOptionText[8] = 'It costs 50000 honor, 25 Warsong marks, 25 Arathi marks and 10 Alterac marks to buy a token for a one-handed Weapon.'
 
 Config.MarkEntry[9] = { 20558, 20559, 20560 }
 Config.MarkCount[9] = { 15, 15, 10 }
 Config.GainTokenEntry[9] = 34853
-Config.Requirement[9] = { 16449,16457,16444,16468,16476,16480,17580,17604,29611,16536,16544,16551,16562,16568,16580,17590,17622,29617 }
+Config.Requirement[9] = 0
 Config.TokenGossipOptionText[9] = 'It costs 25000 honor, 15 Warsong marks, 15 Arathi marks and 10 Alterac marks to buy a token for an Offhand Weapon.'
 
 ------------------------------------------
