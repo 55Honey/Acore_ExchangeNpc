@@ -258,13 +258,11 @@ end
 local function eI_ItemOnHello(event, player, creature)
     if player == nil then return end
 
-    if not Config.TurnInItemEntry or not Config.TurnInItemEntry[1] then
-        return
-    end
-
-    local n
-    for n = 1,#Config.TurnInItemEntry do
-        player:GossipMenuAddItem(OPTION_ICON_CHAT, eI_BuildExchangeString( n, 1) , Config.ItemNpcEntry, n-1)
+    if Config.TurnInItemEntry and Config.TurnInItemEntry[1] then
+        local n
+        for n = 1,#Config.TurnInItemEntry do
+            player:GossipMenuAddItem(OPTION_ICON_CHAT, eI_BuildExchangeString( n, 1) , Config.ItemNpcEntry, n-1)
+        end
     end
 
     player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, 'Let\'s trade', Config.ItemNpcEntry, 10000)
