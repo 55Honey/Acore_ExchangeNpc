@@ -78,6 +78,7 @@ Config.ItemExchangeSuccessfulMessage = 'Thank you! The exchange will be sent to 
 Config.ItemMailSubject = 'Item Exchange'
 Config.ItemMailMessage = 'Greetings, Time Traveler! Here you are the requested substitutes for the provided items.'
 
+--[==[
 Config.TurnInItemEntry[1] = 14344 --Large Brilliant Shard
 Config.TurnInItemAmount[1] = 1
 Config.GainItemEntry[1] = 22447 --Lesser Planar Essence
@@ -133,6 +134,7 @@ Config.GainItemAmount[7] = 1
 Config.ItemGossipOptionTextA[7] = ' of my Nexus Crystal and ask Chromie to send me '
 Config.ItemGossipOptionTextB[7] = ' of her Small Prismatic Shard by mail.'
 Config.SendAsOneMail[7] = true  -- Do all sent items fit into a single stack?
+--]==]
 
 ------------------------------------------------------------------------------------------------
 -- Honor Exchange NPC
@@ -255,6 +257,10 @@ end
 
 local function eI_ItemOnHello(event, player, creature)
     if player == nil then return end
+
+    if not Config.TurnInItemEntry or not Config.TurnInItemEntry[1] then
+        return
+    end
 
     local n
     for n = 1,#Config.TurnInItemEntry do
