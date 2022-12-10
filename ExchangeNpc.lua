@@ -56,7 +56,7 @@ local npcItemObjectGuid
 local npcHonorObjectGuid
 local npcTokenObjectGuid
 
-Config.ItemNpcOn = 1            -- spawns an NPC to turn in items for other items
+Config.ItemNpcOn = 0            -- spawns an NPC to turn in items for other items
 Config.HonorNpcOn = 1           -- spawns an NPC to trade honor vs gold
 Config.TokenNpcOn = 1           -- spawns an NPC to trade multiple items for tokens
 
