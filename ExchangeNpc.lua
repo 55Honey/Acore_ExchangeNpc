@@ -280,6 +280,10 @@ local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code,
     if intid < 1000 then
         player:GossipComplete()
         local ExchangeId = intid + 1
+        if Config.TurnInItemAmount[id] == nil then
+            print('Acore_ExchangeNpc: ExchangeId ' .. ExchangeId .. ' does not exist in the config.')
+            return
+        end
         player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 1 ), Config.ItemNpcEntry, intid + 1000)
         player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 5 ), Config.ItemNpcEntry, intid + 2000)
         player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 10 ), Config.ItemNpcEntry, intid + 3000 )
