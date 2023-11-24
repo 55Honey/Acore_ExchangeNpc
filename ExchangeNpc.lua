@@ -18,7 +18,7 @@
 ------------------------------------------------------------------------------------------------
 -- GM GUIDE:     -  nothing to do
 ------------------------------------------------------------------------------------------------
-local Config = {}                       --general config flags
+local Config = {}       --general config flags
 
 Config.TurnInItemEntry = {}
 Config.TurnInItemAmount = {}
@@ -42,6 +42,18 @@ Config.GainTokenEntry = {}
 Config.Requirement = {}
 Config.TokenGossipOptionText = {}
 
+Config.ItemNpcMapId = {}
+Config.ItemNpcX = {}
+Config.ItemNpcY = {}
+Config.ItemNpcZ = {}
+Config.ItemNpcO = {}
+
+Config.HonorNpcMapId = {}
+Config.HonorNpcX = {}
+Config.HonorNpcY = {}
+Config.HonorNpcZ = {}
+Config.HonorNpcO = {}
+
 local GOSSIP_EVENT_ON_HELLO = 1             -- (event, player, object) - Object is the Creature/GameObject/Item. Can return false to do default action. For item gossip can return false to stop spell casting.
 local GOSSIP_EVENT_ON_SELECT = 2            -- (event, player, object, sender, intid, code, menu_id)
 local OPTION_ICON_CHAT = 0
@@ -58,18 +70,25 @@ local npcTokenObjectGuid
 
 Config.ItemNpcOn = 1            -- spawns an NPC to turn in items for other items
 Config.HonorNpcOn = 1           -- spawns an NPC to trade honor vs gold
-Config.TokenNpcOn = 1           -- spawns an NPC to trade multiple items for tokens
+Config.TokenNpcOn = 0           -- spawns an NPC to trade multiple items for tokens
 
 ------------------------------------------------------------------------------------------------
 -- Item Exchange NPC
 ------------------------------------------------------------------------------------------------
 Config.ItemNpcEntry = 1116001   -- DB entry. Must match this script's SQL for the world DB
 Config.ItemNpcInstanceId = 0
-Config.ItemNpcMapId = 1         -- Map where to spawn the item exchange NPC
-Config.ItemNpcX = -7153         -- x Pos where to spawn the item exchange NPC
-Config.ItemNpcY = -3740         -- y Pos where to spawn the item exchange NPC
-Config.ItemNpcZ = 8.4           -- z Pos where to spawn the item exchange NPC
-Config.ItemNpcO = 5.06          -- orientation to spawn the item exchange NPC
+
+Config.ItemNpcMapId[1] = 530       -- Position where to spawn the item exchange NPCs
+Config.ItemNpcX[1] = -1814.3
+Config.ItemNpcY[1] = 5292.34
+Config.ItemNpcZ[1] = -12.42
+Config.ItemNpcO[1] = 2.014
+
+Config.ItemNpcMapId[2] = 1
+Config.ItemNpcX[2] = -7153
+Config.ItemNpcY[2] = -3740
+Config.ItemNpcZ[2] = 8.4
+Config.ItemNpcO[2] = 5.06
 
 Config.ItemGossipText = 92101
 Config.ItemGossipConfirmationText = 92102
@@ -141,11 +160,17 @@ Config.SendAsOneMail[7] = true  -- Do all sent items fit into a single stack?
 ------------------------------------------------------------------------------------------------
 Config.HonorNpcEntry = 1116002   -- DB entry. Must match this script's SQL for the world DB
 Config.HonorNpcInstanceId = 0
-Config.HonorNpcMapId = 0         -- Map where to spawn the honor exchange NPC
-Config.HonorNpcX = -14288.9      -- x Pos where to spawn the honor exchange NPC
-Config.HonorNpcY = 533.9         -- y Pos where to spawn the honor exchange NPC
-Config.HonorNpcZ = 8.8           -- z Pos where to spawn the honor exchange NPC
-Config.HonorNpcO = 3.64          -- orientation to spawn the honor exchange NPC
+Config.HonorNpcMapId[1] = 530       -- Positions where to spawn the honor exchange NPC
+Config.HonorNpcX[1] = -1802.67
+Config.HonorNpcY[1] = 5296.19
+Config.HonorNpcZ[1] = -12.42
+Config.HonorNpcO[1] = 2.15
+
+Config.HonorNpcMapId[2] = 0
+Config.HonorNpcX[2] = -14288.9
+Config.HonorNpcY[2] = 533.9
+Config.HonorNpcZ[2] = 8.8
+Config.HonorNpcO[2] = 3.64
 
 Config.HonorGossipText = 92103
 Config.HonorGossipConfirmationText = 92104
@@ -153,13 +178,13 @@ Config.NotEnoughHonorMessage = 'You do not have the required amount of Honor.'
 Config.HonorExchangeSuccessfulMessage = 'Thank you! Your Honor was converted to Gold.'
 
 Config.TurnInHonorAmount[1] = 1000      -- Amount of Honor per turn in
-Config.GainGoldAmount[1] = 1            -- Gain Gold amount per turn in
+Config.GainGoldAmount[1] = 4            -- Gain Gold amount per turn in
 Config.TurnInHonorAmount[2] = 5000      -- Amount of Honor per turn in
-Config.GainGoldAmount[2] = 5            -- Gain Gold amount per turn in
+Config.GainGoldAmount[2] = 20           -- Gain Gold amount per turn in
 Config.TurnInHonorAmount[3] = 10000     -- Amount of Honor per turn in
-Config.GainGoldAmount[3] = 10           -- Gain Gold amount per turn in
+Config.GainGoldAmount[3] = 40           -- Gain Gold amount per turn in
 Config.TurnInHonorAmount[4] = 50000     -- Amount of Honor per turn in
-Config.GainGoldAmount[4] = 50           -- Gain Gold amount per turn in
+Config.GainGoldAmount[4] = 200          -- Gain Gold amount per turn in
 
 ------------------------------------------------------------------------------------------------
 -- Token Exchange NPC
@@ -169,17 +194,17 @@ Config.ShowAllTokens = 0            -- If 1 all token gossips are shown regardle
 Config.TokenNpcInstanceId = 0
 Config.TokenGossipText = 92105
 
-Config.TokenNpcMapId[1] = 1         -- Map where to spawn the honor exchange NPC
-Config.TokenNpcX[1] = 1649.44       -- x Pos where to spawn the honor exchange NPC
-Config.TokenNpcY[1] = -4221.64      -- y Pos where to spawn the honor exchange NPC
-Config.TokenNpcZ[1] = 56.38         -- z Pos where to spawn the honor exchange NPC
-Config.TokenNpcO[1] = 1.16          -- orientation to spawn the honor exchange NPC
+Config.TokenNpcMapId[1] = 1         -- Positions where to spawn the token exchange NPC
+Config.TokenNpcX[1] = 1649.44
+Config.TokenNpcY[1] = -4221.64
+Config.TokenNpcZ[1] = 56.38
+Config.TokenNpcO[1] = 1.16
 
-Config.TokenNpcMapId[2] = 0         -- Map where to spawn the honor exchange NPC
-Config.TokenNpcX[2] = -8776.29      -- x Pos where to spawn the honor exchange NPC
-Config.TokenNpcY[2] = 427.62        -- y Pos where to spawn the honor exchange NPC
-Config.TokenNpcZ[2] = 105.23        -- z Pos where to spawn the honor exchange NPC
-Config.TokenNpcO[2] = 4.57          -- orientation to spawn the honor exchange NPC
+Config.TokenNpcMapId[2] = 0
+Config.TokenNpcX[2] = -8776.29
+Config.TokenNpcY[2] = 427.62
+Config.TokenNpcZ[2] = 105.23
+Config.TokenNpcO[2] = 4.57
 
 Config.MissingTokenConditionsMessage = 'You do not meet all conditions to obtain this.'
 Config.TokenExchangeSuccessfulMessage = 'Thank you! The token was added to your inventory.'
@@ -281,7 +306,7 @@ local function eI_ItemOnGossipSelect(event, player, object, sender, intid, code,
         player:GossipComplete()
         local ExchangeId = intid + 1
         if Config.TurnInItemAmount[id] == nil then
-            print('Acore_ExchangeNpc: ExchangeId ' .. ExchangeId .. ' does not exist in the config.')
+            PrintError('Acore_ExchangeNpc: ExchangeId ' .. ExchangeId .. ' does not exist in the config.')
             return
         end
         player:GossipMenuAddItem( OPTION_ICON_CHAT, eI_BuildExchangeString( ExchangeId, 1 ), Config.ItemNpcEntry, intid + 1000)
@@ -491,33 +516,35 @@ end
 ------------------------------------------------------------------------------------------------
 
 local function eI_CloseLua(eI_CloseLua)
-    if npcItemObjectGuid ~= nil then
-        local map
-        map = GetMapById(Config.ItemNpcMapId)
-        if map then
-            local npcItemObject = map:GetWorldObject(npcItemObjectGuid)
-            if npcItemObject ~= nil then
-                npcItemObject:DespawnOrUnsummon(0)
-            end
-        end
-    end
-
-    if npcHonorObjectGuid ~= nil then
-        local map
-        map = GetMapById(Config.HonorNpcMapId)
-        if map then
-            local npcHonorObject = map:GetWorldObject(npcHonorObjectGuid)
-            if npcHonorObject then
-                npcHonorObject:DespawnOrUnsummon(0)
-            end
-        end
-    end
-
-    if npcTokenObjectGuid[1] ~= nil then
-        for n = 1, #Config.TokenNpcMapId do
-            map = GetMapById(Config.TokenNpcMapId[n])
+    if #npcItemObjectGuid >= 1 then
+        for k, v in pairs(Config.ItemNpcMapId) do
+            local map = GetMapById(Config.ItemNpcMapId[k])
             if map then
-                local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid[n])
+                local npcItemObject = map:GetWorldObject(npcItemObjectGuid[k])
+                if npcItemObject then
+                    npcItemObject:DespawnOrUnsummon(0)
+                end
+            end
+        end
+    end
+
+    if #npcHonorObjectGuid >= 1 then
+        for k, v in pairs(Config.HonorNpcMapId) do
+            local map = GetMapById(Config.HonorNpcMapId[k])
+            if map then
+                local npcHonorObject = map:GetWorldObject(npcHonorObjectGuid[k])
+                if npcHonorObject then
+                    npcHonorObject:DespawnOrUnsummon(0)
+                end
+            end
+        end
+    end
+
+    if #npcTokenObjectGuid >= 1 then
+        for k, v in pairs(Config.TokenNpcMapId) do
+            local map = GetMapById(Config.TokenNpcMapId[k])
+            if map then
+                local npcTokenObject = map:GetWorldObject(npcTokenObjectGuid[k])
                 if npcTokenObject then
                     npcTokenObject:DespawnOrUnsummon(0)
                 end
@@ -527,28 +554,31 @@ local function eI_CloseLua(eI_CloseLua)
 end
 
 --Startup:
-npcItemObjectGuid = nil
-npcHonorObjectGuid = nil
+npcItemObjectGuid = {}
+npcHonorObjectGuid = {}
 npcTokenObjectGuid = {}
 
 if Config.ItemNpcOn == 1 then
-    npcItemObject = PerformIngameSpawn(1, Config.ItemNpcEntry, Config.ItemNpcMapId, Config.ItemNpcInstanceId, Config.ItemNpcX, Config.ItemNpcY, Config.ItemNpcZ, Config.ItemNpcO)
-    npcItemObjectGuid = npcItemObject:GetGUID()
-    if npcItemObject then
-        npcItemObject:CastSpell(npcItemObject,65712,true)
-        npcItemObject:CastSpell(npcItemObject,48200,true)
+    for k, v in pairs(Config.ItemNpcMapId) do
+        local npcItemObject = PerformIngameSpawn(1, Config.ItemNpcEntry, v, Config.ItemNpcInstanceId, Config.ItemNpcX[k], Config.ItemNpcY[k], Config.ItemNpcZ[k], Config.ItemNpcO[k])
+        npcItemObjectGuid[k] = npcItemObject:GetGUID()
+        if npcItemObject then
+            npcItemObject:CastSpell(npcItemObject,65712,true)
+            npcItemObject:CastSpell(npcItemObject,48200,true)
+        end
     end
-
 
     RegisterCreatureGossipEvent(Config.ItemNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_ItemOnHello)
     RegisterCreatureGossipEvent(Config.ItemNpcEntry, GOSSIP_EVENT_ON_SELECT, eI_ItemOnGossipSelect)
 end
 
 if Config.HonorNpcOn == 1 then
-    npcHonorObject = PerformIngameSpawn(1, Config.HonorNpcEntry, Config.HonorNpcMapId, Config.HonorNpcInstanceId, Config.HonorNpcX, Config.HonorNpcY, Config.HonorNpcZ, Config.HonorNpcO)
-    npcHonorObjectGuid = npcHonorObject:GetGUID()
-    if npcHonorObject then
-        npcHonorObject:CastSpell(npcItemObject,65712,true)
+    for k, v in pairs(Config.HonorNpcMapId) do
+        local npcHonorObject = PerformIngameSpawn(1, Config.HonorNpcEntry, v, Config.HonorNpcInstanceId, Config.HonorNpcX[k], Config.HonorNpcY[k], Config.HonorNpcZ[k], Config.HonorNpcO[k])
+        npcHonorObjectGuid[k] = npcHonorObject:GetGUID()
+        if npcHonorObject then
+            npcHonorObject:CastSpell(npcHonorObject,65712,true)
+        end
     end
 
     RegisterCreatureGossipEvent(Config.HonorNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_HonorOnHello)
@@ -556,9 +586,9 @@ if Config.HonorNpcOn == 1 then
 end
 
 if Config.TokenNpcOn == 1 then
-    for n = 1, #Config.TokenNpcMapId do
-        local npcTokenObject = PerformIngameSpawn(1, Config.TokenNpcEntry, Config.TokenNpcMapId[n], Config.TokenNpcInstanceId, Config.TokenNpcX[n], Config.TokenNpcY[n], Config.TokenNpcZ[n], Config.TokenNpcO[n])
-        npcTokenObjectGuid[n] = npcTokenObject:GetGUID()
+    for k, v in pairs(Config.TokenNpcMapId) do
+        local npcTokenObject = PerformIngameSpawn(1, Config.TokenNpcEntry, v, Config.TokenNpcInstanceId, Config.TokenNpcX[k], Config.TokenNpcY[k], Config.TokenNpcZ[k], Config.TokenNpcO[k])
+        npcTokenObjectGuid[k] = npcTokenObject:GetGUID()
     end
 
     RegisterCreatureGossipEvent(Config.TokenNpcEntry, GOSSIP_EVENT_ON_HELLO, eI_TokenOnHello)
